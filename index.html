@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅游攻略 - 智能线路生成</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 py-4">
+      <h1 class="text-2xl font-bold text-blue-600">🌍 旅游攻略</h1>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <!-- 选择目的地 -->
+    <section id="step1" class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">选择目的地</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="cursor-pointer bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition" onclick="selectDestination('tokyo', '东京')">
+          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400" class="w-full h-32 object-cover" />
+          <div class="p-4">
+            <h3 class="font-bold">东京</h3>
+            <p class="text-sm text-gray-600">传统与现代融合</p>
+          </div>
+        </div>
+        <div class="cursor-pointer bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition" onclick="selectDestination('kyoto', '京都')">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400" class="w-full h-32 object-cover" />
+          <div class="p-4">
+            <h3 class="font-bold">京都</h3>
+            <p class="text-sm text-gray-600">千年古都</p>
+          </div>
+        </div>
+        <div class="cursor-pointer bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition" onclick="selectDestination('osaka', '大阪')">
+          <img src="https://images.unsplash.com/photo-1590559899731-a382839e5549?w=400" class="w-full h-32 object-cover" />
+          <div class="p-4">
+            <h3 class="font-bold">大阪</h3>
+            <p class="text-sm text-gray-600">美食天堂</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 选择天数 -->
+    <section id="step2" class="mb-8 hidden">
+      <h2 class="text-xl font-semibold mb-4">旅行天数</h2>
+      <div class="flex gap-3">
+        <button onclick="selectDays(4)" class="px-6 py-3 border rounded-lg hover:bg-blue-50">4天</button>
+        <button onclick="selectDays(5)" class="px-6 py-3 border rounded-lg hover:bg-blue-50">5天</button>
+        <button onclick="selectDays(6)" class="px-6 py-3 border rounded-lg hover:bg-blue-50">6天</button>
+        <button onclick="selectDays(7)" class="px-6 py-3 border rounded-lg hover:bg-blue-50">7天</button>
+      </div>
+    </section>
+
+    <!-- 生成按钮 -->
+    <section id="step3" class="mb-8 hidden text-center">
+      <button onclick="generateItinerary()" class="px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-xl hover:bg-blue-700 shadow-lg">
+        ✨ 生成线路
+      </button>
+    </section>
+
+    <!-- 线路展示 -->
+    <section id="itinerary" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold" id="itineraryTitle">线路</h2>
+        <button onclick="reset()" class="text-blue-600 hover:underline">返回</button>
+      </div>
+      <div id="itineraryContent" class="space-y-6"></div>
+    </section>
+  </main>
+
+  <script>
+    const data = {
+      tokyo: {
+        attractions: ['浅草寺', '东京塔', '秋叶原', '明治神宫', '涩谷十字路口'],
+        food: ['筑地寿司', '一兰拉面', '鸟贵族串烧']
+      },
+      kyoto: {
+        attractions: ['金阁寺', '清水寺', '伏见稻荷大社', '岚山竹林', '花见小路'],
+        food: ['抹茶甜品', '鳗鱼饭', '京都荞麦面']
+      },
+      osaka: {
+        attractions: ['大阪城', '道顿堀', '通天阁', '心斋桥'],
+        food: ['回转寿司', '大阪煎饺', '章鱼烧']
+      }
+    };
+
+    let selectedDest = null;
+    let selectedDestName = '';
+    let selectedDays = 5;
+
+    function selectDestination(id, name) {
+      selectedDest = id;
+      selectedDestName = name;
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function selectDays(days) {
+      selectedDays = days;
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.remove('hidden');
+    }
+
+    function generateItinerary() {
+      document.getElementById('step3').classList.add('hidden');
+      document.getElementById('itinerary').classList.remove('hidden');
+      document.getElementById('itineraryTitle').textContent = selectedDestName + ' ' + selectedDays + '天攻略';
+
+      const dest = data[selectedDest];
+      let html = '';
+
+      for (let day = 1; day <= selectedDays; day++) {
+        const morningAttraction = dest.attractions[(day - 1) % dest.attractions.length];
+        const lunch = dest.food[day % dest.food.length];
+        const afternoonAttraction = dest.attractions[(day + 1) % dest.attractions.length];
+        const dinner = dest.food[(day + 2) % dest.food.length];
+
+        html += `
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-lg font-bold text-blue-600 mb-4">第 ${day} 天</h3>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-gray-500 w-16">09:00</span>
+                <span class="px-3 py-1 bg-blue-50 rounded">📍 ${morningAttraction}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-gray-500 w-16">12:00</span>
+                <span class="px-3 py-1 bg-orange-50 rounded">🍽️ ${lunch}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-gray-500 w-16">14:00</span>
+                <span class="px-3 py-1 bg-blue-50 rounded">📍 ${afternoonAttraction}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-sm text-gray-500 w-16">18:30</span>
+                <span class="px-3 py-1 bg-orange-50 rounded">🍽️ ${dinner}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('itineraryContent').innerHTML = html;
+    }
+
+    function reset() {
+      document.getElementById('itinerary').classList.add('hidden');
+      document.getElementById('step1').classList.remove('hidden');
+      selectedDest = null;
+    }
+  </script>
+</body>
+</html>
