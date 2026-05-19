@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>高途公考草稿纸 - 橡皮擦功能原型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+            background: #f5f5f5;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Phone Frame */
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 420px) {
+            .phone-frame {
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* Status Bar */
+        .status-bar {
+            height: 44px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .status-bar .time { font-size: 15px; font-weight: 600; }
+        .status-bar .icons { display: flex; gap: 6px; align-items: center; }
+        .status-bar .icons span { font-size: 12px; }
+
+        /* Toolbar */
+        .toolbar {
+            height: 52px;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 16px;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .toolbar-btn {
+            width: 48px;
+            height: 46px;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            gap: 1px;
+        }
+
+        .toolbar-btn:active {
+            transform: scale(0.92);
+        }
+
+        .toolbar-btn.active {
+            background: #FFF3E0;
+        }
+
+        .toolbar-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: #FF6B00;
+            border-radius: 2px;
+        }
+
+        .toolbar-btn.active svg path,
+        .toolbar-btn.active svg line,
+        .toolbar-btn.active svg circle,
+        .toolbar-btn.active svg rect,
+        .toolbar-btn.active svg polyline {
+            stroke: #FF6B00;
+        }
+
+        .toolbar-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .toolbar-btn .btn-label {
+            font-size: 9px;
+            color: #999;
+            white-space: nowrap;
+            line-height: 1;
+        }
+
+        .toolbar-btn.active .btn-label {
+            color: #FF6B00;
+            font-weight: 600;
+        }
+
+        .toolbar-btn.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .toolbar-divider {
+            width: 1px;
+            height: 24px;
+            background: #e8e8e8;
+            margin: 0 4px;
+        }
+
+        /* Question Area */
+        .question-area {
+            background: #f8f8f8;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px 8px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .question-content {
+            padding: 0 16px;
+        }
+
+        .question-tag {
+            display: inline-block;
+            background: #E8F5E9;
+            color: #4CAF50;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .difficulty {
+            color: #FF9800;
+            font-size: 13px;
+        }
+
+        .question-tag-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .question-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+        }
+
+        .option-letter {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: #666;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            font-size: 15px;
+            color: #333;
+        }
+
+        /* Canvas Overlay */
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        #drawCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+
+        /* Eraser Cursor */
+        .eraser-cursor {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border: 2px solid rgba(255, 107, 0, 0.7);
+            border-radius: 50%;
+            background: rgba(255, 107, 0, 0.06);
+            pointer-events: none;
+            z-index: 20;
+            display: none;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.15s;
+        }
+
+        .eraser-cursor.visible {
+            display: block;
+        }
+
+        /* Eraser active (pressing) state */
+        .eraser-cursor.pressing {
+            border-color: rgba(255, 59, 48, 0.8);
+            background: rgba(255, 59, 48, 0.1);
+        }
+
+        /* Toast */
+        .toast {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* Pen Size Selector */
+        .pen-size-popup {
+            position: absolute;
+            top: 52px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 12px 16px;
+            display: none;
+            z-index: 150;
+            flex-direction: row;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .pen-size-popup.visible {
+            display: flex;
+        }
+
+        .pen-size-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .pen-size-option:hover {
+            background: #f5f5f5;
+        }
+
+        .pen-size-option.active {
+            background: #FFF3E0;
+        }
+
+        .pen-size-dot {
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .pen-size-label {
+            font-size: 10px;
+            color: #999;
+        }
+
+        /* Color options */
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin-left: 8px;
+            padding-left: 12px;
+            border-left: 1px solid #e8e8e8;
+        }
+
+        .color-option {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .color-option.active {
+            border-color: #FF6B00;
+            transform: scale(1.15);
+        }
+
+        /* Prototype Label */
+        .prototype-label {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        /* Clear Confirm Modal */
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 14px;
+            width: 270px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .modal-body {
+            padding: 20px 16px 16px;
+        }
+
+        .modal-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .modal-actions {
+            display: flex;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .modal-btn:first-child {
+            border-right: 1px solid #e8e8e8;
+            color: #666;
+        }
+
+        .modal-btn.danger {
+            color: #FF3B30;
+            font-weight: 600;
+        }
+
+        /* Interaction hint */
+        .interaction-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 107, 0, 0.9);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .interaction-hint.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-frame" id="phoneFrame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <span class="time">14:36</span>
+        <div class="icons">
+            <span>📶</span>
+            <span>🔋 83%</span>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar" id="toolbar">
+        <button class="toolbar-btn" id="btnClose" title="关闭">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.2" stroke-linecap="round">
+                <line x1="6" y1="6" x2="18" y2="18"/>
+                <line x1="18" y1="6" x2="6" y2="18"/>
+            </svg>
+        </button>
+        
+        <div class="toolbar-divider"></div>
+
+        <button class="toolbar-btn active" id="btnPen" title="画笔">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                <path d="m15 5 4 4"/>
+            </svg>
+        </button>
+
+        <button class="toolbar-btn" id="btnEraser" title="橡皮擦">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/>
+                <path d="M22 21H7"/>
+                <path d="m5 11 9 9"/>
+            </svg>
+        </button>
+
+        <div class="toolbar-divider"></div>
+
+        <button class="toolbar-btn disabled" id="btnUndo" title="撤销">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+            </svg>
+        </button>
+
+        <button class="toolbar-btn disabled" id="btnRedo" title="重做">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <path d="M20.49 15a9 9 0 1 1-2.13-9.36L23 10"/>
+            </svg>
+        </button>
+
+        <button class="toolbar-btn" id="btnClear" title="清空">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                <line x1="10" y1="11" x2="10" y2="17"/>
+                <line x1="14" y1="11" x2="14" y2="17"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Pen Size Popup -->
+    <div class="pen-size-popup" id="penSizePopup">
+        <div class="pen-size-option" data-size="2">
+            <div class="pen-size-dot" style="width:6px;height:6px;"></div>
+            <span class="pen-size-label">细</span>
+        </div>
+        <div class="pen-size-option active" data-size="4">
+            <div class="pen-size-dot" style="width:10px;height:10px;"></div>
+            <span class="pen-size-label">中</span>
+        </div>
+        <div class="pen-size-option" data-size="7">
+            <div class="pen-size-dot" style="width:16px;height:16px;"></div>
+            <span class="pen-size-label">粗</span>
+        </div>
+        <div class="color-options">
+            <div class="color-option active" data-color="#333333" style="background:#333333;"></div>
+            <div class="color-option" data-color="#FF3B30" style="background:#FF3B30;"></div>
+            <div class="color-option" data-color="#007AFF" style="background:#007AFF;"></div>
+            <div class="color-option" data-color="#34C759" style="background:#34C759;"></div>
+        </div>
+    </div>
+
+    <!-- Question Area + Canvas -->
+    <div class="question-area" id="questionArea">
+        <!-- Question Content (Background) -->
+        <div class="question-header">
+            <span>个性化练习 · 政治理论</span>
+            <span>1<span style="color:#ccc">/10</span></span>
+        </div>
+        <div class="question-content">
+            <div class="question-tag-row">
+                <span class="question-tag">多选题</span>
+                <span class="difficulty">难度：⭐⭐⭐⭐⭐</span>
+            </div>
+            <div class="question-text">
+                《上海市国民经济和社会发展第十三个五年规划纲要》指出，要全方位拓展开放的广度和深度，以中国（上海）自由贸易试验区为引领，加快探索以开放促改革、促发展的新路径，使对内对外开放相互促进，"引进来"与"走出去"更好结合，全面参与国家（　）战略，促进长三角地区一体化发展。
+            </div>
+            <div class="option">
+                <div class="option-letter">A</div>
+                <div class="option-text">"一带一路"</div>
+            </div>
+            <div class="option">
+                <div class="option-letter">B</div>
+                <div class="option-text">长江经济带</div>
+            </div>
+            <div class="option">
+                <div class="option-letter">C</div>
+                <div class="option-text">长三角经济区</div>
+            </div>
+            <div class="option">
+                <div class="option-letter">D</div>
+                <div class="option-text">中部崛起</div>
+            </div>
+        </div>
+
+        <!-- Canvas Overlay -->
+        <div class="canvas-overlay">
+            <canvas id="drawCanvas"></canvas>
+        </div>
+
+        <!-- Eraser Cursor -->
+        <div class="eraser-cursor" id="eraserCursor"></div>
+
+        <!-- Toast -->
+        <div class="toast" id="toast"></div>
+
+        <!-- Interaction Hint -->
+        <div class="interaction-hint" id="interactionHint"></div>
+    </div>
+
+    <!-- Clear Confirm Modal -->
+    <div class="modal-overlay" id="clearModal">
+        <div class="modal-box">
+            <div class="modal-body">
+                <div class="modal-title">清空草稿纸</div>
+                <div class="modal-desc">确定要清空所有内容吗？此操作不可撤销</div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn" id="btnCancelClear">取消</button>
+                <button class="modal-btn danger" id="btnConfirmClear">清空</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="prototype-label">高途公考草稿纸 · 橡皮擦功能原型 v1.0</div>
+
+<script>
+// ==========================================
+// 草稿纸核心逻辑
+// ==========================================
+
+const canvas = document.getElementById('drawCanvas');
+const ctx = canvas.getContext('2d');
+const questionArea = document.getElementById('questionArea');
+const eraserCursor = document.getElementById('eraserCursor');
+const toast = document.getElementById('toast');
+const hint = document.getElementById('interactionHint');
+
+// Buttons
+const btnPen = document.getElementById('btnPen');
+const btnEraser = document.getElementById('btnEraser');
+const btnUndo = document.getElementById('btnUndo');
+const btnRedo = document.getElementById('btnRedo');
+const btnClear = document.getElementById('btnClear');
+const btnClose = document.getElementById('btnClose');
+const clearModal = document.getElementById('clearModal');
+const btnCancelClear = document.getElementById('btnCancelClear');
+const btnConfirmClear = document.getElementById('btnConfirmClear');
+const penSizePopup = document.getElementById('penSizePopup');
+
+// State
+let currentTool = 'pen'; // 'pen' | 'eraser'
+let isDrawing = false;
+let penSize = 4;
+let penColor = '#333333';
+let dpr = window.devicePixelRatio || 1;
+
+// Stroke storage
+let strokes = []; // Array of stroke objects: { points: [{x,y}], color, size, id, visible }
+let currentStroke = null;
+let strokeIdCounter = 0;
+
+// Undo/Redo stack
+let undoStack = []; // Array of actions: { type: 'draw'|'erase', strokeIds: [] }
+let redoStack = [];
+
+// Eraser state
+let erasedInCurrentSwipe = []; // stroke IDs erased in current eraser swipe
+const ERASER_RADIUS = 13; // smaller radius for precision
+let hoveredStrokeId = null; // stroke currently under eraser cursor (for preview highlight)
+
+// ==========================================
+// Canvas Setup
+// ==========================================
+
+function resizeCanvas() {
+    const rect = questionArea.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    redrawAll();
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// ==========================================
+// Drawing Functions
+// ==========================================
+
+function redrawAll() {
+    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+    for (const stroke of strokes) {
+        if (!stroke.visible) continue;
+        drawStroke(stroke, stroke.id === hoveredStrokeId);
+    }
+}
+
+function drawStroke(stroke, highlighted) {
+    if (stroke.points.length < 2) return;
+    ctx.beginPath();
+    
+    if (highlighted) {
+        // Layer 1: Wide yellow highlight background (like highlighter pen)
+        ctx.strokeStyle = '#FFE033';
+        ctx.lineWidth = stroke.size + 14;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.globalAlpha = 0.55;
+        ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+        for (let i = 1; i < stroke.points.length; i++) {
+            const prev = stroke.points[i - 1];
+            const curr = stroke.points[i];
+            const mx = (prev.x + curr.x) / 2;
+            const my = (prev.y + curr.y) / 2;
+            ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
+        }
+        ctx.stroke();
+        
+        // Layer 2: Inner orange glow
+        ctx.beginPath();
+        ctx.strokeStyle = '#FF9500';
+        ctx.lineWidth = stroke.size + 6;
+        ctx.globalAlpha = 0.4;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+        for (let i = 1; i < stroke.points.length; i++) {
+            const prev = stroke.points[i - 1];
+            const curr = stroke.points[i];
+            const mx = (prev.x + curr.x) / 2;
+            const my = (prev.y + curr.y) / 2;
+            ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
+        }
+        ctx.stroke();
+        
+        // Layer 3: Draw the original stroke on top (keep original color so user sees what will be deleted)
+        ctx.beginPath();
+        ctx.strokeStyle = stroke.color;
+        ctx.lineWidth = stroke.size;
+        ctx.globalAlpha = 1.0;
+    } else {
+        ctx.strokeStyle = stroke.color;
+        ctx.lineWidth = stroke.size;
+        ctx.globalAlpha = 1;
+    }
+    
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+    for (let i = 1; i < stroke.points.length; i++) {
+        const prev = stroke.points[i - 1];
+        const curr = stroke.points[i];
+        const mx = (prev.x + curr.x) / 2;
+        const my = (prev.y + curr.y) / 2;
+        ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+}
+
+// ==========================================
+// Pointer Events
+// ==========================================
+
+function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+    };
+}
+
+canvas.addEventListener('pointerdown', onPointerDown);
+canvas.addEventListener('pointermove', onPointerMove);
+canvas.addEventListener('pointerup', onPointerUp);
+canvas.addEventListener('pointerleave', onPointerLeave);
+
+function onPointerDown(e) {
+    e.preventDefault();
+    isDrawing = true;
+    const pos = getPos(e);
+
+    // Close pen size popup if open
+    penSizePopup.classList.remove('visible');
+
+    if (currentTool === 'pen') {
+        currentStroke = {
+            id: strokeIdCounter++,
+            points: [pos],
+            color: penColor,
+            size: penSize,
+            visible: true
+        };
+    } else if (currentTool === 'eraser') {
+        erasedInCurrentSwipe = [];
+        eraserCursor.classList.add('pressing');
+        eraserCursor.style.left = pos.x + 'px';
+        eraserCursor.style.top = pos.y + 'px';
+        checkErase(pos);
+    }
+}
+
+function onPointerMove(e) {
+    e.preventDefault();
+    const pos = getPosFromEvent(e);
+
+    if (currentTool === 'eraser') {
+        // Always update cursor position and hover highlight in eraser mode
+        eraserCursor.classList.add('visible');
+        eraserCursor.style.left = pos.x + 'px';
+        eraserCursor.style.top = pos.y + 'px';
+        
+        if (isDrawing) {
+            // Pressing: actually erase
+            checkErase(pos);
+        } else {
+            // Hovering: just highlight preview
+            updateEraserHover(pos);
+        }
+        return;
+    }
+
+    // Pen mode: only act when drawing
+    if (!isDrawing) return;
+
+    if (currentTool === 'pen' && currentStroke) {
+        currentStroke.points.push(pos);
+        // Draw incrementally
+        const pts = currentStroke.points;
+        if (pts.length >= 2) {
+            const prev = pts[pts.length - 2];
+            const curr = pts[pts.length - 1];
+            ctx.beginPath();
+            ctx.strokeStyle = currentStroke.color;
+            ctx.lineWidth = currentStroke.size;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.moveTo(prev.x, prev.y);
+            ctx.lineTo(curr.x, curr.y);
+            ctx.stroke();
+        }
+    }
+}
+
+function onPointerUp(e) {
+    if (!isDrawing) return;
+    isDrawing = false;
+
+    if (currentTool === 'pen' && currentStroke) {
+        if (currentStroke.points.length >= 2) {
+            strokes.push(currentStroke);
+            undoStack.push({ type: 'draw', strokeIds: [currentStroke.id] });
+            redoStack = [];
+            updateButtons();
+        }
+        currentStroke = null;
+    } else if (currentTool === 'eraser') {
+        eraserCursor.classList.remove('pressing');
+        if (erasedInCurrentSwipe.length > 0) {
+            undoStack.push({ type: 'erase', strokeIds: [...erasedInCurrentSwipe] });
+            redoStack = [];
+            updateButtons();
+        }
+        erasedInCurrentSwipe = [];
+        // After releasing, update hover highlight at current position
+        const pos = getPosFromEvent(e);
+        updateEraserHover(pos);
+    }
+}
+
+function onPointerLeave(e) {
+    if (isDrawing) {
+        // Treat as pointer up
+        onPointerUp(e);
+    }
+    // Hide cursor and clear highlight when leaving canvas
+    eraserCursor.classList.remove('visible');
+    eraserCursor.classList.remove('pressing');
+    if (hoveredStrokeId !== null) {
+        hoveredStrokeId = null;
+        redrawAll();
+    }
+}
+
+// Get position from any event type (works even for pointerup/leave)
+function getPosFromEvent(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.clientX || 0;
+    const clientY = e.clientY || 0;
+    return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+    };
+}
+
+// ==========================================
+// Eraser Logic (Stroke-level erasing)
+// ==========================================
+
+function checkErase(pos) {
+    for (const stroke of strokes) {
+        if (!stroke.visible) continue;
+        if (erasedInCurrentSwipe.includes(stroke.id)) continue;
+        
+        for (const pt of stroke.points) {
+            const dx = pt.x - pos.x;
+            const dy = pt.y - pos.y;
+            if (dx * dx + dy * dy < ERASER_RADIUS * ERASER_RADIUS) {
+                // Erase this stroke
+                stroke.visible = false;
+                erasedInCurrentSwipe.push(stroke.id);
+                hoveredStrokeId = null;
+                redrawAll();
+                break;
+            }
+        }
+    }
+}
+
+// Find the stroke under the eraser cursor and highlight it (hover preview)
+function updateEraserHover(pos) {
+    let foundId = null;
+    for (const stroke of strokes) {
+        if (!stroke.visible) continue;
+        for (const pt of stroke.points) {
+            const dx = pt.x - pos.x;
+            const dy = pt.y - pos.y;
+            if (dx * dx + dy * dy < ERASER_RADIUS * ERASER_RADIUS) {
+                foundId = stroke.id;
+                break;
+            }
+        }
+        if (foundId !== null) break;
+    }
+    
+    if (foundId !== hoveredStrokeId) {
+        hoveredStrokeId = foundId;
+        redrawAll();
+    }
+}
+
+// ==========================================
+// Undo / Redo
+// ==========================================
+
+function undo() {
+    if (undoStack.length === 0) return;
+    const action = undoStack.pop();
+
+    if (action.type === 'draw') {
+        // Hide the drawn strokes
+        for (const id of action.strokeIds) {
+            const s = strokes.find(st => st.id === id);
+            if (s) s.visible = false;
+        }
+    } else if (action.type === 'erase') {
+        // Restore erased strokes
+        for (const id of action.strokeIds) {
+            const s = strokes.find(st => st.id === id);
+            if (s) s.visible = true;
+        }
+    }
+
+    redoStack.push(action);
+    redrawAll();
+    updateButtons();
+    showToast('已撤销');
+}
+
+function redo() {
+    if (redoStack.length === 0) return;
+    const action = redoStack.pop();
+
+    if (action.type === 'draw') {
+        for (const id of action.strokeIds) {
+            const s = strokes.find(st => st.id === id);
+            if (s) s.visible = true;
+        }
+    } else if (action.type === 'erase') {
+        for (const id of action.strokeIds) {
+            const s = strokes.find(st => st.id === id);
+            if (s) s.visible = false;
+        }
+    }
+
+    undoStack.push(action);
+    redrawAll();
+    updateButtons();
+    showToast('已重做');
+}
+
+function clearAll() {
+    if (strokes.length === 0 || strokes.every(s => !s.visible)) {
+        showToast('草稿纸已经是空的');
+        return;
+    }
+    clearModal.classList.add('visible');
+}
+
+function doClear() {
+    strokes = [];
+    undoStack = [];
+    redoStack = [];
+    currentStroke = null;
+    strokeIdCounter = 0;
+    redrawAll();
+    updateButtons();
+    clearModal.classList.remove('visible');
+    showToast('已清空');
+}
+
+// ==========================================
+// Tool Switching
+// ==========================================
+
+function switchTool(tool) {
+    currentTool = tool;
+    
+    btnPen.classList.toggle('active', tool === 'pen');
+    btnEraser.classList.toggle('active', tool === 'eraser');
+
+    if (tool === 'pen') {
+        canvas.style.cursor = 'crosshair';
+        // Clear eraser state when switching away
+        eraserCursor.classList.remove('visible');
+        eraserCursor.classList.remove('pressing');
+        if (hoveredStrokeId !== null) {
+            hoveredStrokeId = null;
+            redrawAll();
+        }
+        showHint('画笔模式：在屏幕上滑动绘制');
+    } else {
+        canvas.style.cursor = 'none';
+        showHint('橡皮擦模式：移动鼠标预览，按下滑动擦除');
+    }
+}
+
+// ==========================================
+// UI Updates
+// ==========================================
+
+function updateButtons() {
+    btnUndo.classList.toggle('disabled', undoStack.length === 0);
+    btnRedo.classList.toggle('disabled', redoStack.length === 0);
+    
+    const hasVisibleStrokes = strokes.some(s => s.visible);
+    btnClear.classList.toggle('disabled', !hasVisibleStrokes);
+}
+
+function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1200);
+}
+
+function showHint(msg) {
+    hint.textContent = msg;
+    hint.classList.add('show');
+    setTimeout(() => hint.classList.remove('show'), 2000);
+}
+
+// ==========================================
+// Event Listeners
+// ==========================================
+
+btnPen.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentTool === 'pen') {
+        // Toggle pen size popup
+        penSizePopup.classList.toggle('visible');
+    } else {
+        switchTool('pen');
+        penSizePopup.classList.remove('visible');
+    }
+});
+
+btnEraser.addEventListener('click', (e) => {
+    e.stopPropagation();
+    penSizePopup.classList.remove('visible');
+    switchTool('eraser');
+});
+
+btnUndo.addEventListener('click', (e) => {
+    e.stopPropagation();
+    undo();
+});
+
+btnRedo.addEventListener('click', (e) => {
+    e.stopPropagation();
+    redo();
+});
+
+btnClear.addEventListener('click', (e) => {
+    e.stopPropagation();
+    clearAll();
+});
+
+btnClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showToast('关闭草稿纸（原型演示）');
+});
+
+btnCancelClear.addEventListener('click', () => {
+    clearModal.classList.remove('visible');
+});
+
+btnConfirmClear.addEventListener('click', () => {
+    doClear();
+});
+
+// Pen size options
+document.querySelectorAll('.pen-size-option').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelectorAll('.pen-size-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        penSize = parseInt(opt.dataset.size);
+    });
+});
+
+// Color options
+document.querySelectorAll('.color-option').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelectorAll('.color-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        penColor = opt.dataset.color;
+    });
+});
+
+// Close popup when clicking elsewhere
+document.addEventListener('click', () => {
+    penSizePopup.classList.remove('visible');
+});
+
+// ==========================================
+// Initialize
+// ==========================================
+
+switchTool('pen');
+updateButtons();
+
+// Show initial hint
+setTimeout(() => {
+    showHint('✏️ 画笔模式 — 在屏幕上绘制，然后试试橡皮擦');
+}, 500);
+
+</script>
+
+</body>
+</html>
