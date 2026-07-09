@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>学习计划 2.0 · UI 研发交付稿</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;}
+body{background:#EEF0F5;color:#23252D;line-height:1.6;padding:40px 20px 80px;}
+.wrap{max-width:1180px;margin:0 auto;}
+h1{font-size:30px;font-weight:800;margin-bottom:6px;}
+.sub{color:#4F5157;font-size:15px;margin-bottom:28px;}
+.sec{background:#fff;border-radius:16px;padding:28px 32px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,.05);}
+.sec h2{font-size:20px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec h2 .n{width:30px;height:30px;border-radius:9px;background:#FF443D;color:#fff;font-size:16px;display:inline-flex;align-items:center;justify-content:center;}
+.sec p{font-size:14px;color:#4F5157;margin-bottom:10px;}
+.sec p b{color:#23252D;}
+.note{background:#FFF1F0;border-left:4px solid #FF443D;border-radius:0 10px 10px 0;padding:14px 18px;font-size:13.5px;color:#7a2f2a;margin:12px 0;}
+.grid-c{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;}
+.sw{display:flex;align-items:center;gap:12px;border:1px solid #EEEEF1;border-radius:10px;padding:10px 12px;}
+.sw .chip{width:40px;height:40px;border-radius:9px;flex-shrink:0;border:1px solid rgba(0,0,0,.06);}
+.sw .m{font-size:13px;} .sw .m .nm{font-weight:600;} .sw .m .hex{color:#919296;font-family:ui-monospace,Menlo,monospace;font-size:12px;} .sw .m .u{color:#919296;font-size:11.5px;}
+.scale-row{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{border:1px solid #EEEEF1;border-radius:10px;padding:8px 14px;font-size:13px;}
+.pill b{color:#FF443D;} .pill .u{color:#919296;margin-left:6px;font-size:12px;}
+.screens{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:24px;}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #EEEEF1;}
+.card .hd{padding:18px 20px 14px;border-bottom:1px solid #EEEEF1;}
+.card .hd .t{font-size:17px;font-weight:700;}
+.card .hd .d{font-size:13px;color:#4F5157;margin-top:4px;}
+.card .body{display:flex;gap:16px;padding:18px 20px;}
+.frame{width:375px;flex-shrink:0;border-radius:18px;overflow:hidden;border:1px solid #E7E8EE;background:#F5F6FD;box-shadow:0 4px 16px rgba(0,0,0,.08);}
+.frame .clip{width:375px;overflow:hidden;position:relative;}
+.frame iframe{width:750px;border:0;display:block;transform:scale(.5);transform-origin:top left;}
+.spec{flex:1;min-width:0;}
+.spec .st{font-size:12px;font-weight:700;color:#919296;letter-spacing:1px;margin-bottom:8px;}
+.spec li{font-size:13px;color:#4F5157;margin-bottom:7px;list-style:none;padding-left:16px;position:relative;}
+.spec li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:#FF443D;}
+.spec a{display:inline-block;margin-top:8px;font-size:13px;color:#FF443D;text-decoration:none;font-weight:600;border:1px solid #FF443D;border-radius:8px;padding:6px 14px;}
+.foot{color:#919296;font-size:13px;text-align:center;margin-top:20px;}
+code{background:#F5F6FD;border-radius:5px;padding:1px 6px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:#c0392b;}
+@media(max-width:900px){.screens{grid-template-columns:1fr;}.card .body{flex-direction:column;}}
+</style></head><body><div class="wrap">
+<h1>学习计划 2.0 · UI 研发交付稿</h1>
+<div class="sub">6 张定稿 + 设计规范 + 图标清单 · 前端可直接「检查元素」取到每个色值、字号、间距 · 数据 2026-07</div>
+<div class="sec"><h2><span class="n">?</span>先看这里：这份稿怎么用、"切图/像素"是什么</h2>
+<p><b>这份页面就是给研发的交付物。</b>下面每一屏都是真实网页（不是截图），前端在浏览器里右键「检查」就能直接读到每个元素的颜色、字号、间距、圆角——等于「标注稿」和「设计规范」二合一，不用再单独标注。</p>
+<p><b>要不要写进 Figma？</b>不建议、我也不该动你们设计师的 Figma 源文件。正规做法是：这些稿定了之后，交给<b>设计师在 Figma 里重建</b>成设计源，之后用 Figma 的 <b>Dev Mode</b> 自动出标注和切图。但那需要设计师排期；而这些稿本身已经是精确的 HTML/CSS，<b>前端拿这份交付页可以立刻开工</b>，不必等 Figma。</p>
+<div class="note"><b>"切图"是什么：</b>把设计里代码画不出来的图片素材（图标、插画、logo）导出成图片文件给前端。<b>好消息：这套稿几乎不用切图</b>——渐变、圆角、色块、进度环全是 CSS 画的，前端直接写代码即可；只有<b>图标</b>需要单独给（见最下方清单），给 SVG 就行。</div>
+<div class="note"><b>"像素/倍图"是什么：</b>手机设计按"逻辑尺寸"算（iPhone 逻辑宽 <b>375pt</b>），但真机屏幕像素更密（2 倍、3 倍）。所以<b>图片素材</b>要导出 @2×(750px)、@3×(1125px) 两三套才不糊；代码画的东西不受影响，CSS 自动适配。<br>⚠️ 本交付页/PNG 都是按 <b>750px（=375pt 的 2 倍）</b> 出的，所以下面规范里的<b>逻辑 pt = 像素 ÷ 2</b>。前端按 1pt=1dp 写布局即可。</div>
+</div><div class="sec"><h2><span class="n">1</span>设计 Token（颜色 / 字号 / 间距 / 圆角）</h2><p><b>颜色</b>（含 CSS 变量名，可直接复用）</p><div class="grid-c"><div class="sw"><span class="chip" style="background:#FF443D"></span><div class="m"><div class="nm">主色 珊瑚红</div><div class="hex">#FF443D <span style="color:#c2c4cc">·</span> --coral</div><div class="u">按钮/强调/进度/选中</div></div></div><div class="sw"><span class="chip" style="background:#FF6A5A"></span><div class="m"><div class="nm">珊瑚红-浅</div><div class="hex">#FF6A5A <span style="color:#c2c4cc">·</span> --coral-2</div><div class="u">渐变辅色</div></div></div><div class="sw"><span class="chip" style="background:#FFF1F0"></span><div class="m"><div class="nm">珊瑚红-底</div><div class="hex">#FFF1F0 <span style="color:#c2c4cc">·</span> --coral-wash</div><div class="u">浅底/标签底</div></div></div><div class="sw"><span class="chip" style="background:#FFF8F7"></span><div class="m"><div class="nm">暖白底</div><div class="hex">#FFF8F7 <span style="color:#c2c4cc">·</span> --warm</div><div class="u">卡片暖色区</div></div></div><div class="sw"><span class="chip" style="background:#24C789"></span><div class="m"><div class="nm">成功绿</div><div class="hex">#24C789 <span style="color:#c2c4cc">·</span> --green</div><div class="u">已完成状态</div></div></div><div class="sw"><span class="chip" style="background:#E3FFEF"></span><div class="m"><div class="nm">绿-底</div><div class="hex">#E3FFEF <span style="color:#c2c4cc">·</span> --green-wash</div><div class="u">完成标签底</div></div></div><div class="sw"><span class="chip" style="background:#F5F6FD"></span><div class="m"><div class="nm">页面底</div><div class="hex">#F5F6FD <span style="color:#c2c4cc">·</span> --bg</div><div class="u">页面背景</div></div></div><div class="sw"><span class="chip" style="background:#FFFFFF"></span><div class="m"><div class="nm">卡片白</div><div class="hex">#FFFFFF <span style="color:#c2c4cc">·</span> --card</div><div class="u">卡片背景</div></div></div><div class="sw"><span class="chip" style="background:#23252D"></span><div class="m"><div class="nm">正文-主</div><div class="hex">#23252D <span style="color:#c2c4cc">·</span> --t1</div><div class="u">标题/主文字</div></div></div><div class="sw"><span class="chip" style="background:#4F5157"></span><div class="m"><div class="nm">正文-次</div><div class="hex">#4F5157 <span style="color:#c2c4cc">·</span> --t2</div><div class="u">次级文字</div></div></div><div class="sw"><span class="chip" style="background:#919296"></span><div class="m"><div class="nm">正文-辅</div><div class="hex">#919296 <span style="color:#c2c4cc">·</span> --t3</div><div class="u">辅助/说明</div></div></div><div class="sw"><span class="chip" style="background:#C2C4CC"></span><div class="m"><div class="nm">正文-弱</div><div class="hex">#C2C4CC <span style="color:#c2c4cc">·</span> --t4</div><div class="u">占位/禁用</div></div></div><div class="sw"><span class="chip" style="background:#EEEEF1"></span><div class="m"><div class="nm">分隔线</div><div class="hex">#EEEEF1 <span style="color:#c2c4cc">·</span> --div</div><div class="u">列表分隔</div></div></div></div><p style="margin-top:18px"><b>图标强调色</b>（任务类型）</p><div class="scale-row"><div class="pill"><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#2E86FF;vertical-align:-1px;margin-right:6px"></span>练习类 <b>#2E86FF</b></div><div class="pill"><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#FF9A2E;vertical-align:-1px;margin-right:6px"></span>录播/视频 <b>#FF9A2E</b></div><div class="pill"><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#FF443D;vertical-align:-1px;margin-right:6px"></span>直播 <b>#FF443D</b></div></div><p style="margin-top:18px"><b>字号阶梯</b>（逻辑 pt）</p><div class="scale-row"><div class="pill"><b>10pt</b><span class="u">角标/极小字</span></div><div class="pill"><b>12pt</b><span class="u">辅助说明</span></div><div class="pill"><b>13pt</b><span class="u">正文/列表项</span></div><div class="pill"><b>14pt</b><span class="u">次级标题</span></div><div class="pill"><b>15pt</b><span class="u">卡片标题</span></div><div class="pill"><b>16pt</b><span class="u">重点数值</span></div><div class="pill"><b>17pt</b><span class="u">页面主标题</span></div><div class="pill"><b>21pt</b><span class="u">大数字</span></div><div class="pill"><b>23pt</b><span class="u">倒计时数</span></div></div><p style="margin-top:18px"><b>圆角</b>（pt）</p><div class="scale-row"><div class="pill"><b>4pt</b><span class="u">角标/小标签</span></div><div class="pill"><b>6pt</b><span class="u">输入框</span></div><div class="pill"><b>8pt</b><span class="u">中卡片</span></div><div class="pill"><b>10pt</b><span class="u">标签胶囊</span></div><div class="pill"><b>12pt</b><span class="u">卡片</span></div><div class="pill"><b>16pt</b><span class="u">大卡片/弹窗</span></div></div><p style="margin-top:18px"><b>间距</b>（pt，8 的倍数体系为主）</p><div class="scale-row"><div class="pill"><b>4pt</b><span class="u">紧凑间隙</span></div><div class="pill"><b>8pt</b><span class="u">元素内间距</span></div><div class="pill"><b>12pt</b><span class="u">卡片内行距</span></div><div class="pill"><b>16pt</b><span class="u">卡片内边距/卡间距</span></div><div class="pill"><b>20pt</b><span class="u">分区间距</span></div></div></div><div class="sec" style="background:transparent;box-shadow:none;padding:0"><h2 style="padding-left:4px"><span class="n">2</span>页面定稿（6 张 · 真实网页，可检查元素）</h2></div><div class="screens"><div class="card"><div class="hd"><div class="t">计划预览页</div><div class="d">计划生成后的总览：距考试倒计时、进度环、摘要卡、按阶段/科目展开的任务清单</div></div>
+<div class="body">
+<div class="frame"><div class="clip" style="height:1214px"><iframe src="./preview_rev.html" style="height:2429px" scrolling="no"></iframe></div></div>
+<div class="spec"><div class="st">关键规范</div><ul><li>卡片圆角 16pt / 内边距 16pt</li><li>进度环 75×75pt，珊瑚红描边</li><li>主标题 17pt/粗，正文 13pt</li><li>摘要卡左侧 4pt 珊瑚红竖条</li></ul><a href="./preview_rev.html" target="_blank">单独打开原尺寸 ↗</a></div></div></div><div class="card"><div class="hd"><div class="t">全部计划页</div><div class="d">按阶段→科目→章节三级结构展开的完整任务库，右上角状态筛选(多选)</div></div>
+<div class="body">
+<div class="frame"><div class="clip" style="height:1024px"><iframe src="./allplan_rev.html" style="height:2049px" scrolling="no"></iframe></div></div>
+<div class="spec"><div class="st">关键规范</div><ul><li>卡片圆角 16pt / 内边距 16pt</li><li>列表项上分隔线 #EEEEF1</li><li>主色珊瑚红 #FF443D</li><li>状态色：完成绿 #24C789 / 暂未安排灰</li></ul><a href="./allplan_rev.html" target="_blank">单独打开原尺寸 ↗</a></div></div></div><div class="card"><div class="hd"><div class="t">计划变更记录页</div><div class="d">按时间倒序的变更卡片列表，点击进入单次详情</div></div>
+<div class="body">
+<div class="frame"><div class="clip" style="height:750px"><iframe src="./rec_v2.html" style="height:1500px" scrolling="no"></iframe></div></div>
+<div class="spec"><div class="st">关键规范</div><ul><li>卡片圆角 16pt / 内边距 16pt</li><li>列表项上分隔线 #EEEEF1</li><li>主色珊瑚红 #FF443D</li><li>状态色：完成绿 #24C789 / 暂未安排灰</li></ul><a href="./rec_v2.html" target="_blank">单独打开原尺寸 ↗</a></div></div></div><div class="card"><div class="hd"><div class="t">单次变化详情页</div><div class="d">一次重算的前后对比：新增/移出/调整任务明细</div></div>
+<div class="body">
+<div class="frame"><div class="clip" style="height:848px"><iframe src="./det_v1.html" style="height:1697px" scrolling="no"></iframe></div></div>
+<div class="spec"><div class="st">关键规范</div><ul><li>卡片圆角 16pt / 内边距 16pt</li><li>列表项上分隔线 #EEEEF1</li><li>主色珊瑚红 #FF443D</li><li>状态色：完成绿 #24C789 / 暂未安排灰</li></ul><a href="./det_v1.html" target="_blank">单独打开原尺寸 ↗</a></div></div></div><div class="card"><div class="hd"><div class="t">计划调整弹窗</div><div class="d">底部弹起的学习时长调整器</div></div>
+<div class="body">
+<div class="frame"><div class="clip" style="height:812px"><iframe src="./dlg_v1.html" style="height:1624px" scrolling="no"></iframe></div></div>
+<div class="spec"><div class="st">关键规范</div><ul><li>卡片圆角 16pt / 内边距 16pt</li><li>列表项上分隔线 #EEEEF1</li><li>主色珊瑚红 #FF443D</li><li>状态色：完成绿 #24C789 / 暂未安排灰</li></ul><a href="./dlg_v1.html" target="_blank">单独打开原尺寸 ↗</a></div></div></div><div class="card"><div class="hd"><div class="t">补给任务详情页</div><div class="d">单条补给任务的详情与操作</div></div>
+<div class="body">
+<div class="frame"><div class="clip" style="height:750px"><iframe src="./sup_v1.html" style="height:1500px" scrolling="no"></iframe></div></div>
+<div class="spec"><div class="st">关键规范</div><ul><li>卡片圆角 16pt / 内边距 16pt</li><li>列表项上分隔线 #EEEEF1</li><li>主色珊瑚红 #FF443D</li><li>状态色：完成绿 #24C789 / 暂未安排灰</li></ul><a href="./sup_v1.html" target="_blank">单独打开原尺寸 ↗</a></div></div></div></div><div class="sec"><h2><span class="n">3</span>图标与资源清单（唯一需要"切图"的部分）</h2>
+<p>下面这些是代码画不了、需要设计师给素材的图标。<b>给 SVG 最佳</b>（矢量、任意倍数不糊）；若只能给 PNG，请给 @2× 和 @3× 两套。其余（进度环、渐变条、色块标签、分隔线、状态胶囊）全是 CSS，<b>无需切图</b>。</p>
+<div class="scale-row" style="margin-top:6px">
+<div class="pill">任务类型：<b>练习</b>（蓝底白字/图标）</div>
+<div class="pill">任务类型：<b>录播/视频</b>（橙底 ▶）</div>
+<div class="pill">任务类型：<b>直播</b>（珊瑚底）</div>
+<div class="pill">底部栏：<b>请假</b> 📅 / <b>调整计划</b> ⚙️</div>
+<div class="pill">导航：返回箭头 ‹ / 展开收起 ∧∨ / 关闭 ✕</div>
+<div class="pill">摘要卡：🎉（可用插画替换）</div>
+</div>
+<div class="note" style="margin-top:16px">现稿里的 emoji（🎉📅⚙️📍）是占位，正式上线请换成 App 图标库里的对应图标；换掉后这套 UI 无其它待切资源。</div>
+</div>
+<div class="foot">学习计划 2.0 UI 交付 · 逻辑宽 375pt / 出图 750px(2×) · 前端可直接检查元素取值，无需额外标注文件</div>
+</div></body></html>

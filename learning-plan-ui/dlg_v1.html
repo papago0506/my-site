@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><link rel="stylesheet" href="ds.css"><style>
+.screen{width:750px;height:1624px;position:relative;background:linear-gradient(180deg,#EDE5F5,#F5F6FD);overflow:hidden;}
+.mask{position:absolute;inset:0;background:rgba(28,30,42,.5);}
+.dlg{position:absolute;left:40px;right:40px;bottom:80px;background:#fff;border-radius:36px;padding:44px 44px 40px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.dlg .h{font-size:36px;font-weight:700;text-align:center;margin-bottom:12px;}
+.dlg .tip{font-size:22px;color:var(--coral);text-align:center;margin-bottom:26px;}
+.dlg .body{font-size:28px;color:var(--t2);line-height:1.6;margin-bottom:30px;}
+.dlg .note{font-size:24px;color:var(--t3);line-height:1.6;margin:26px 0 34px;}
+.dlg .acts{display:flex;gap:24px;}
+.dlg .b{flex:1;text-align:center;font-size:30px;font-weight:600;padding:24px 0;border-radius:48px;}
+.dlg .b-cancel{border:2px solid #E2E3E9;color:var(--t2);}
+.dlg .b-ok{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;box-shadow:0 10px 22px rgba(255,68,61,.3);}
+</style></head><body>
+<div class="screen"><div class="mask"></div>
+<div class="dlg">
+<div class="h">学习计划需要调整</div><div class="tip">● 强提醒（考试日期大幅提前 / 时间明显减少）</div>
+<div class="body">你的考试日期或学习时间发生变化，后续计划建议同步调整。</div>
+<div style="display:flex;gap:20px;">
+  <div style="flex:1;border:1px solid #EEE;border-radius:20px;padding:28px 0;text-align:center;"><div class="num" style="font-size:52px;color:var(--coral);">8</div><div style="font-size:24px;color:var(--t3);margin-top:6px;">暂未安排</div></div>
+  <div style="flex:1;border:1px solid #EEE;border-radius:20px;padding:28px 0;text-align:center;"><div class="num" style="font-size:52px;color:var(--t1);">3</div><div style="font-size:24px;color:var(--t3);margin-top:6px;">进入补给</div></div>
+  <div style="flex:1;border:1px solid #EEE;border-radius:20px;padding:28px 0;text-align:center;"><div class="num" style="font-size:52px;color:var(--t1);">1</div><div style="font-size:24px;color:var(--t3);margin-top:6px;">进入今日</div></div>
+</div>
+<div class="note">本次调整会影响未来计划安排，今日任务不变。调整后可在计划变更记录查看详情。</div>
+<div class="acts"><span class="b b-cancel">取消调整</span><span class="b b-ok">确定调整</span></div>
+</div></div></body></html>

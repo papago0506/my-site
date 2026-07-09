@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
+:root{--coral:#FF443D;--coral-2:#FF6A5A;--coral-wash:#FFF1F0;--warm:#FFF8F7;--green:#24C789;--green-wash:#E3FFEF;--bg:#F5F6FD;--card:#fff;--t1:#23252D;--t2:#4F5157;--t3:#919296;--t4:#C2C4CC;--div:#EEEEF1;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+body{width:750px;background:var(--bg);color:var(--t1);}
+.num{font-weight:800;letter-spacing:.5px;}
+.statusbar{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;font-size:30px;font-weight:600;}
+.statusbar .ic{font-size:26px;letter-spacing:5px;}
+.nav{height:92px;display:flex;align-items:center;justify-content:center;position:relative;padding:0 32px;}
+.nav .back{position:absolute;left:32px;font-size:46px;}
+.nav .title{font-size:34px;font-weight:700;}
+.nav .right{position:absolute;right:32px;font-size:27px;color:var(--coral);}
+.content{padding:8px 32px 32px;}
+.mb{margin-bottom:26px;}
+.card{background:var(--card);border-radius:32px;box-shadow:0 6px 24px rgba(31,35,60,.05);}
+/* 摘要卡 */
+.summary{background:linear-gradient(135deg,#FFF3F1,#FFF9F5 60%,#fff);border:1px solid #FFE3DF;border-radius:32px;padding:34px 36px;position:relative;box-shadow:0 10px 30px rgba(255,68,61,.08);}
+.summary .close{position:absolute;top:32px;right:34px;font-size:34px;color:var(--t4);}
+.summary .head{display:flex;align-items:center;gap:18px;margin-bottom:16px;}
+.summary .head .badge{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,var(--coral-2),var(--coral));display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 6px 16px rgba(255,68,61,.28);}
+.summary .head .ttl{font-size:37px;font-weight:700;}
+.summary .sub{font-size:27px;color:var(--t2);line-height:1.55;margin:0 4px 24px;}
+.summary .info{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.75);border:1px solid #FFE3DF;border-radius:20px;padding:26px 30px;}
+.summary .info .l{font-size:29px;font-weight:600;} .summary .info .l .n{font-size:42px;color:var(--coral);margin:0 6px;}
+.summary .info .r{font-size:26px;color:var(--coral);font-weight:500;}
+/* 头卡 */
+.headcard{overflow:hidden;}
+.ribbon{display:flex;align-items:center;height:100px;}
+.ribbon .days{align-self:stretch;display:flex;align-items:center;padding:0 44px;background:linear-gradient(120deg,var(--coral-2),var(--coral));color:#fff;font-size:34px;font-weight:700;border-radius:0 0 44px 0;}
+.ribbon .st{flex:1;display:flex;align-items:center;justify-content:flex-end;padding:0 40px;font-size:28px;font-weight:600;color:var(--coral);}
+.headcard .bd{padding:24px 36px 40px;}
+.goal{font-size:32px;font-weight:700;margin:8px 0 30px;white-space:nowrap;}
+.prog{background:linear-gradient(180deg,var(--warm),#fff);border:1px solid #FFEDEA;border-radius:24px;padding:38px 44px;display:flex;align-items:center;}
+.ring{width:154px;height:154px;border-radius:50%;background:conic-gradient(var(--coral) 0 50%,#FCDAD6 50% 100%);display:flex;align-items:center;justify-content:center;margin-right:46px;flex-shrink:0;}
+.ring .in{width:118px;height:118px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring .in .p{font-size:42px;color:var(--coral);} .ring .in .p i{font-size:24px;font-style:normal;font-weight:700;} .ring .in .l{font-size:22px;color:var(--t3);margin-top:6px;}
+.prog .fin .k{font-size:26px;color:var(--t3);margin-bottom:12px;} .prog .fin .v{font-size:38px;} .prog .fin .v i{font-size:26px;font-style:normal;color:var(--t2);margin:0 6px;font-weight:400;}
+/* 入口行（直播集训营 / 补给任务，只放名字）*/
+.entry{border-radius:32px;height:112px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
+.entry.live{background:linear-gradient(100deg,#FFECE8,#FFF6F3);}
+.entry.supply{background:#fff;box-shadow:0 6px 24px rgba(31,35,60,.05);}
+.entry .l{display:flex;align-items:center;gap:18px;font-size:33px;font-weight:700;}
+.entry .tag{font-size:20px;color:#fff;background:var(--coral);border-radius:8px 8px 8px 2px;padding:5px 12px;}
+.entry .ic{width:52px;height:52px;border-radius:15px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:28px;}
+.entry .r{font-size:30px;color:var(--t4);}
+/* tabs + 右上角筛选 */
+.tabrow{display:flex;align-items:center;justify-content:space-between;padding:34px 8px 6px;position:relative;}
+.tabs{display:flex;gap:44px;align-items:center;}
+.tabs .tab{font-size:31px;color:var(--t3);}
+.tabs .tab.on{font-size:33px;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:8px;}
+.tabs .tab.on .pin{color:var(--coral);font-size:26px;}
+.filterbtn{display:flex;align-items:center;gap:8px;font-size:26px;color:var(--t2);border:1px solid #E2E3E9;border-radius:34px;padding:10px 24px;background:#fff;}
+.filterbtn .fi{color:var(--coral);}
+/* 下拉多选面板（展示为打开态，右对齐）*/
+.fpanel{position:absolute;right:8px;top:92px;width:340px;background:#fff;border-radius:22px;box-shadow:0 16px 44px rgba(31,35,60,.18);padding:14px 8px;z-index:9;}
+.fpanel .fh{font-size:23px;color:var(--t3);padding:10px 22px 12px;}
+.fp{display:flex;align-items:center;gap:16px;padding:20px 22px;font-size:28px;}
+.fp .box{width:34px;height:34px;border-radius:8px;border:2px solid #D2D4DB;flex-shrink:0;}
+.fp.on .box{background:var(--coral);border-color:var(--coral);position:relative;}
+.fp.on .box::after{content:"✓";position:absolute;left:6px;top:-2px;color:#fff;font-size:24px;font-weight:700;}
+.fp.on{color:var(--coral);font-weight:600;}
+/* 任务清单 */
+.listcard{padding:34px 32px 8px;}
+.l1{display:flex;align-items:center;gap:16px;font-size:34px;font-weight:700;margin-bottom:24px;}
+.l1 .cc{width:46px;height:46px;border-radius:50%;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.subj{background:var(--warm);border:1px solid #FFEDEA;border-radius:20px;padding:26px 30px;margin-bottom:22px;}
+.subj .a{display:flex;align-items:center;gap:16px;font-size:31px;font-weight:700;margin-bottom:12px;}
+.subj .a .cc{width:38px;height:38px;border-radius:50%;border:2px solid var(--coral);color:var(--coral);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.subj .b{font-size:25px;color:var(--t3);padding-left:54px;}
+.row{display:flex;align-items:center;padding:24px 0 24px 54px;border-top:1px solid var(--div);}
+.row .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-right:20px;flex-shrink:0;}
+.ic.video{background:linear-gradient(135deg,#FFA24D,#FF8A2A);} .ic.prac{background:linear-gradient(135deg,#5AA9FF,#2E86FF);}
+.row .nm{flex:1;font-size:29px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.bdg{font-size:22px;font-weight:600;padding:7px 18px;border-radius:10px;flex-shrink:0;margin-left:14px;}
+.bdg.done{background:var(--green-wash);color:var(--green);} .bdg.prog{background:var(--coral-wash);color:var(--coral);} .bdg.idle{background:#F1F2F5;color:#9A9DA6;} .bdg.skip{background:#FFF3E4;color:#FF9A2E;} .bdg.wait{background:#F1F2F5;color:#B4B7C0;}
+.row.w .nm{color:var(--t4);} .row.w .ic{opacity:.45;}
+/* 底栏 */
+.bar{background:#fff;box-shadow:0 -4px 24px rgba(31,35,60,.06);display:flex;align-items:center;gap:32px;padding:26px 36px 50px;margin-top:18px;}
+.bar .ico{text-align:center;font-size:23px;color:var(--t2);} .bar .ico .i{font-size:42px;display:block;margin-bottom:4px;}
+.bar .go{flex:1;background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;font-size:34px;font-weight:700;text-align:center;padding:28px 0;border-radius:50px;box-shadow:0 10px 24px rgba(255,68,61,.3);letter-spacing:2px;}
+</style></head><body><div class="statusbar"><span>9:41</span><span class="ic">▪▪▪ 📶 🔋</span></div><div class="nav"><span class="back">‹</span><span class="title">学习计划</span></div><div class="content"><div class="summary mb"><span class="close">✕</span><div class="head"><span class="badge">🎉</span><span class="ttl">学习计划已生成</span></div><div class="sub">系统已优先安排当前阶段更重要的学习任务，你可以直接开始学习。</div><div class="info"><span class="l">另有<span class="n num">8</span>个任务暂未安排</span><span class="r">计划变更记录 ›</span></div></div><div class="card headcard mb"><div class="ribbon"><div class="days">距离考试还剩 234 天</div><div class="st">计划进行中</div></div><div class="bd"><div class="goal">备考目标：河南省·公务员·2027年4月</div><div class="prog"><div class="ring"><div class="in"><span class="p num">50<i>%</i></span><span class="l">计划进度</span></div></div><div class="fin"><div class="k">计划预计完成时间</div><div class="v"><span class="num">2027</span><i>年</i><span class="num">08</span><i>月</i><span class="num">18</span><i>日</i></div></div></div></div></div><div class="entry live mb"><span class="l"><span class="tag">LIVE</span>直播集训营</span><span class="r">›</span></div><div class="entry supply mb"><span class="l"><span class="ic">🧩</span>补给任务</span><span class="r">›</span></div><div class="tabrow"><div class="tabs"><span class="tab on"><span class="pin">📍</span>理论速通</span><span class="tab">拔高巩固</span><span class="tab">技巧抢分</span></div></div><div class="card listcard"><div class="l1"><span class="cc">∨</span>理论速通</div><div class="subj"><div class="a"><span class="cc">∨</span>行政职业能力测验（行测）</div><div class="b">已完成 21% ｜ 共 48 个学习任务</div></div><div class="row"><span class="ic video">▶</span><span class="nm">言语理解 · 视频精讲课</span><span class="bdg idle">未开始</span></div><div class="row"><span class="ic prac">练</span><span class="nm">细节判断 · 专项练习</span><span class="bdg idle">未开始</span></div><div class="row"><span class="ic video">▶</span><span class="nm">主旨概括 · 言语理解精讲</span><span class="bdg idle">未开始</span></div><div class="row w"><span class="ic prac">练</span><span class="nm">逻辑填空 · 专项练习</span><span class="bdg wait">暂未安排</span></div><div class="row w"><span class="ic video">▶</span><span class="nm">常识判断 · 视频精讲</span><span class="bdg wait">暂未安排</span></div></div></div><div class="bar"><div class="ico"><span class="i">📅</span>请假</div><div class="ico"><span class="i">⚙️</span>调整计划</div><div class="go">继续学习</div></div></body></html>

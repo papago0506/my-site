@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><link rel="stylesheet" href="ds.css">
+<style>
+.tl{position:relative;padding-left:56px;}
+.tl::before{content:"";position:absolute;left:20px;top:16px;bottom:16px;width:3px;background:#EAEBF0;}
+.node{position:relative;margin-bottom:30px;}
+.node .dot{position:absolute;left:-52px;top:14px;width:28px;height:28px;border-radius:50%;background:#fff;border:5px solid var(--coral);box-shadow:0 0 0 6px #fff;}
+.node.new .dot{border-color:var(--green);} .node.recover .dot{border-color:#B4B7C0;}
+.node .time{font-size:25px;color:var(--t3);margin-bottom:12px;}
+.node .box{background:#fff;border-radius:24px;box-shadow:0 6px 20px rgba(31,35,60,.05);padding:28px 30px;}
+.node .box .r1{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.node .box .ttl{font-size:30px;font-weight:700;line-height:1.4;flex:1;padding-right:16px;}
+.node .box .sum{font-size:25px;color:var(--t3);line-height:1.6;margin-bottom:18px;}
+.node .box .sum b{color:var(--coral);font-weight:600;}
+.node .box .more{font-size:26px;color:var(--coral);font-weight:600;text-align:right;}
+</style></head><body><div class="phone">
+<div class="statusbar"><span>9:41</span><span class="ic">▪▪▪ 📶 🔋</span></div>
+<div class="nav"><span class="back">‹</span><span class="title">计划变更记录</span><span class="right">说明</span></div>
+<div class="content">
+<div class="tl">
+<div class="node adjust"><div class="dot"></div><div class="time">2026年6月17日 15:20</div>
+<div class="box"><div class="r1"><div class="ttl">考试日期已调整，后续计划已更新</div><span class="badge adjust">计划调整</span></div>
+<div class="sum">新增 <b>3</b>｜暂未安排 <b>8</b>｜重新排期 <b>12</b>｜今日任务不变</div><div class="more">查看详情 ›</div></div></div>
+<div class="node new"><div class="dot"></div><div class="time">2026年6月16日 10:05</div>
+<div class="box"><div class="r1"><div class="ttl">学习计划已生成，部分任务暂未安排</div><span class="badge new">首次生成</span></div>
+<div class="sum">已优先安排当前阶段任务 · 暂未安排 <b>18</b> 个</div><div class="more">查看详情 ›</div></div></div>
+<div class="node recover"><div class="dot"></div><div class="time">2026年6月15日 18:30</div>
+<div class="box"><div class="r1"><div class="ttl">你恢复了 2 个任务</div><span class="badge recover">任务恢复</span></div>
+<div class="sum">恢复 <b>2</b> 个任务 · 后续将结合计划安排</div><div class="more">查看详情 ›</div></div></div>
+</div></div></div></body></html>
