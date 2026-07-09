@@ -1,0 +1,47 @@
+:root{
+  --coral:#FF443D; --coral-2:#FF6A5A; --coral-deep:#E5352E;
+  --coral-wash:#FFF1F0; --warm:#FFF8F7;
+  --green:#1FB877; --green-wash:#E4F9F0;
+  --amber:#FF9A2E; --amber-wash:#FFF3E4;
+  --info:#3A6DF0; --info-wash:#ECF1FE;
+  --bg:#F5F6FD; --card:#FFFFFF;
+  --t1:#23252D; --t2:#4F5157; --t3:#919296; --t4:#C2C4CC;
+  --div:#EEEEF1;
+  --r-card:32px; --r-in:22px; --r-pill:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.phone{width:750px;background:var(--bg);color:var(--t1);min-height:100px;}
+.num{font-family:"DIN Alternate","Bebas Neue","PingFang SC",sans-serif;font-weight:800;letter-spacing:.5px;}
+.statusbar{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;font-size:30px;font-weight:600;}
+.statusbar .ic{font-size:26px;letter-spacing:5px;}
+.nav{height:96px;display:flex;align-items:center;justify-content:center;position:relative;padding:0 32px;}
+.nav .back{position:absolute;left:32px;font-size:46px;color:var(--t1);line-height:1;}
+.nav .title{font-size:34px;font-weight:700;}
+.nav .right{position:absolute;right:36px;font-size:28px;color:var(--coral);}
+.content{padding:20px 32px 40px;}
+.card{background:var(--card);border-radius:var(--r-card);box-shadow:0 6px 24px rgba(31,35,60,0.05);}
+.mb{margin-bottom:26px;}
+/* 筛选 chip */
+.chips{display:flex;gap:18px;margin-bottom:26px;flex-wrap:wrap;}
+.chip{font-size:27px;color:var(--t2);background:#fff;border:1px solid #E7E8EE;border-radius:40px;padding:14px 34px;}
+.chip.on{color:var(--coral);border-color:var(--coral);background:var(--coral-wash);font-weight:600;}
+/* 语义徽章 */
+.badge{font-size:23px;font-weight:600;padding:8px 20px;border-radius:12px;display:inline-block;}
+.badge.new{background:var(--green-wash);color:var(--green);}
+.badge.adjust{background:var(--coral-wash);color:var(--coral);}
+.badge.recover{background:#F1F2F5;color:#8A8D96;}
+.badge.wait{background:#F1F2F5;color:#9A9DA6;}
+.badge.done{background:var(--green-wash);color:var(--green);}
+/* 按钮 */
+.btn{font-size:27px;font-weight:600;border-radius:44px;text-align:center;display:inline-block;}
+.btn-p{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;padding:16px 40px;box-shadow:0 8px 18px rgba(255,68,61,.26);}
+.btn-o{border:2px solid var(--coral);color:var(--coral);background:#fff;padding:14px 38px;}
+.btn-sm{font-size:25px;padding:12px 28px;}
+.link{color:var(--coral);font-weight:600;font-size:27px;}
+/* 分区标题 pill */
+.pill{background:linear-gradient(90deg,var(--coral-2),var(--coral));color:#fff;font-size:26px;font-weight:700;padding:8px 22px;border-radius:12px 12px 12px 3px;}
+/* 底部操作栏 */
+.bar{background:#fff;box-shadow:0 -4px 24px rgba(31,35,60,.06);display:flex;align-items:center;gap:32px;padding:26px 36px 50px;}
+.bar .ico{text-align:center;font-size:23px;color:var(--t2);}
+.bar .ico .i{font-size:42px;display:block;margin-bottom:6px;}
+.bar .go{flex:1;background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;font-size:34px;font-weight:700;text-align:center;padding:28px 0;border-radius:50px;box-shadow:0 10px 24px rgba(255,68,61,.3);letter-spacing:2px;}
