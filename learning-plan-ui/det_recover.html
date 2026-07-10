@@ -4,6 +4,11 @@
 .reccard .mt{font-size:28px;color:var(--t2);line-height:1.5;margin-bottom:18px;}
 .reccard .chg{font-size:27px;color:var(--t1);}
 .reccard .chg b{color:var(--coral);}
+.adjbox{padding:30px 34px;}
+.adjbox .h{font-size:30px;font-weight:700;margin-bottom:22px;}
+.adjrow{display:flex;padding:18px 0;border-top:1px dashed var(--div);font-size:27px;}
+.adjrow:first-of-type{border-top:none;}
+.adjrow .k{width:150px;color:var(--t3);} .adjrow .v{flex:1;font-weight:600;}
 .tabx{display:flex;gap:18px;margin:6px 4px 22px;}
 .tabx .t{font-size:26px;color:var(--t2);background:#fff;border:1px solid #E7E8EE;border-radius:40px;padding:12px 30px;}
 .tabx .t.on{color:var(--coral);border-color:var(--coral);background:var(--coral-wash);font-weight:600;}
@@ -19,7 +24,10 @@
 <div class="card reccard mb"><div class="ty">任务恢复</div>
 <div class="mt">你恢复了 2 个任务，后续将结合计划安排。</div>
 <div class="chg">本次变化：恢复 <b>2</b>｜今日任务不变</div></div>
-<!-- 任务恢复不展示「调整内容」框 -->
+<div class="card adjbox mb"><div class="h">调整内容</div>
+<div class="adjrow"><span class="k">操作</span><span class="v">恢复任务</span></div>
+<div class="adjrow"><span class="k">恢复数量</span><span class="v">2 个</span></div>
+<div class="adjrow"><span class="k">触发方式</span><span class="v">手动恢复</span></div></div>
 <div class="tabx"><span class="t on">全部 2</span><span class="t">恢复 2</span></div>
 <div class="card tk mb"><div class="r1"><span class="nm">资料分析专项练习</span><span class="badge recover">恢复</span></div>
 <div class="meta">练习 · 约30分钟</div>
