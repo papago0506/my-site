@@ -45,14 +45,20 @@ body{width:750px;background:var(--bg);color:var(--t1);}
 .entry .tx{flex:1;min-width:0;} .entry .tx .nm{font-size:29px;font-weight:700;} .entry .tx .sub{font-size:21px;color:var(--t3);margin-top:6px;white-space:nowrap;}
 .entry .r{font-size:28px;color:var(--t4);flex-shrink:0;}
 /* tabs + 内联状态筛选 chips（不浮层、不遮挡）*/
-.tabrow{display:flex;align-items:center;padding:34px 8px 6px;}
-.tabs{display:flex;gap:44px;align-items:center;}
-.tabs .tab{font-size:31px;color:var(--t3);}
-.tabs .tab.on{font-size:33px;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:8px;}
-.tabs .tab.on .pin{color:var(--coral);font-size:26px;}
-.filterchips{display:flex;flex-wrap:wrap;gap:16px;padding:22px 8px 18px;}
-.fchip{font-size:25px;color:var(--t2);background:#fff;border:1px solid #E2E3E9;border-radius:34px;padding:11px 26px;}
-.fchip.on{color:var(--coral);border-color:var(--coral);background:var(--coral-wash);font-weight:600;}
+.tabrow{display:flex;align-items:center;justify-content:space-between;padding:30px 8px 10px;position:relative;flex-wrap:nowrap;}
+.tabs{display:flex;gap:30px;align-items:center;flex-wrap:nowrap;}
+.tabs .tab{font-size:28px;color:var(--t3);white-space:nowrap;}
+.tabs .tab.on{font-size:29px;font-weight:700;color:var(--t1);display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.tabs .tab.on .pin{color:var(--coral);font-size:24px;}
+.filterbtn{display:flex;align-items:center;gap:6px;font-size:24px;color:var(--coral);border:1px solid var(--coral);border-radius:34px;padding:9px 18px;background:var(--coral-wash);font-weight:600;flex-shrink:0;white-space:nowrap;}
+.filterbtn .fi{font-size:24px;}
+.fpanel{position:absolute;right:8px;top:98px;width:360px;background:#fff;border-radius:22px;box-shadow:0 16px 44px rgba(31,35,60,.18);padding:14px 8px;z-index:9;}
+.fpanel .fh{font-size:23px;color:var(--t3);padding:10px 22px 12px;}
+.fp{display:flex;align-items:center;gap:16px;padding:20px 22px;font-size:28px;color:var(--t2);}
+.fp .box{width:34px;height:34px;border-radius:8px;border:2px solid #D2D4DB;flex-shrink:0;}
+.fp.on .box{background:var(--coral);border-color:var(--coral);position:relative;}
+.fp.on .box::after{content:"✓";position:absolute;left:6px;top:-4px;color:#fff;font-size:24px;font-weight:700;}
+.fp.on{color:var(--coral);font-weight:600;}
 /* 任务清单 */
 .listcard{padding:34px 32px 8px;}
 .l1{display:flex;align-items:center;gap:16px;font-size:34px;font-weight:700;margin-bottom:24px;}
@@ -75,8 +81,6 @@ body{width:750px;background:var(--bg);color:var(--t1);}
 </style></head><body><div class="statusbar"><span>9:41</span><span class="ic">▪▪▪ 📶 🔋</span></div><div class="nav"><span class="back">‹</span><span class="title">全部计划</span><span class="right">计划变更记录</span></div><div class="content"><div class="card headcard mb"><div class="ribbon"><div class="days">距离考试还剩 234 天</div><div class="st">计划进行中</div></div>
 <div class="bd"><div class="goal">备考目标：河南省·公务员·2027年4月</div>
 <div class="prog"><div class="ring"><div class="in"><span class="p num">50<i>%</i></span><span class="l">计划进度</span></div></div>
-<div class="fin"><div class="k">计划预计完成时间</div><div class="v"><span class="num">2027</span><i>年</i><span class="num">08</span><i>月</i><span class="num">18</span><i>日</i></div></div></div></div></div><div class="entries mb"><div class="entry live"><span class="ic">LIVE</span><span class="tx"><span class="nm">直播集训营</span><span class="sub">共 100 节</span></span><span class="r">›</span></div><div class="entry supply"><span class="ic">🧩</span><span class="tx"><span class="nm">补给任务</span><span class="sub">每日推送</span></span><span class="r">›</span></div></div><div class="tabrow"><div class="tabs"><span class="tab on"><span class="pin">📍</span>理论速通</span><span class="tab">拔高巩固</span><span class="tab">技巧抢分</span></div></div><div class="filterchips"><span class="fchip">全部</span><span class="fchip">已完成</span><span class="fchip">进行中</span><span class="fchip">未开始</span><span class="fchip">已跳过</span><span class="fchip on">未排入计划</span></div><div class="card listcard"><div class="l1"><span class="cc">∨</span>理论速通</div>
-<div class="subj"><div class="a"><span class="cc">∨</span>行政职业能力测验（行测）</div><div class="b">筛选：未排入计划 ｜ 共 3 个</div></div>
-<div class="row w"><span class="ic prac">练</span><span class="nm">逻辑填空 · 专项练习</span><span class="bdg wait">未排入计划</span><span class="recover">恢复</span></div>
-<div class="row w"><span class="ic video">▶</span><span class="nm">常识判断 · 视频精讲课</span><span class="bdg wait">未排入计划</span><span class="recover">恢复</span></div>
-<div class="row w"><span class="ic prac">练</span><span class="nm">资料分析 · 专项练习</span><span class="bdg wait">未排入计划</span><span class="recover">恢复</span></div></div></div><div class="bar"><div class="ico"><span class="i">📅</span>请假</div><div class="ico"><span class="i">⚙️</span>调整计划</div><div class="go">继续学习</div></div></body></html>
+<div class="fin"><div class="k">计划预计完成时间</div><div class="v"><span class="num">2027</span><i>年</i><span class="num">08</span><i>月</i><span class="num">18</span><i>日</i></div></div></div></div></div><div class="entries mb"><div class="entry live"><span class="ic">LIVE</span><span class="tx"><span class="nm">直播集训营</span><span class="sub">共 100 节</span></span><span class="r">›</span></div><div class="entry supply"><span class="ic">🧩</span><span class="tx"><span class="nm">补给任务</span><span class="sub">每日推送</span></span><span class="r">›</span></div></div><div class="tabrow"><div class="tabs"><span class="tab on"><span class="pin">📍</span>理论速通</span><span class="tab">拔高巩固</span><span class="tab">技巧抢分</span></div><span class="filterbtn"><span class="fi">⚙</span>筛选 1</span></div><div class="card listcard"><div class="l1"><span class="cc">∨</span>理论速通</div>
+<div class="subj"><div class="a"><span class="cc">∨</span>行政职业能力测验（行测）</div><div class="b">已完成 21% ｜ 共 48 个学习任务</div></div>
+<div class="row w"><span class="ic prac">练</span><span class="nm">逻辑填空 · 专项练习</span><span class="bdg wait">未排入</span><span class="recover">恢复</span></div><div class="row w"><span class="ic video">▶</span><span class="nm">常识判断 · 视频精讲</span><span class="bdg wait">未排入</span><span class="recover">恢复</span></div><div class="row w"><span class="ic prac">练</span><span class="nm">资料分析 · 专项练习</span><span class="bdg wait">未排入</span><span class="recover">恢复</span></div></div></div><div class="bar"><div class="ico"><span class="i">📅</span>请假</div><div class="ico"><span class="i">⚙️</span>调整计划</div><div class="go">继续学习</div></div></body></html>
