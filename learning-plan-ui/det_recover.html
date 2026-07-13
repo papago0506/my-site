@@ -1,26 +1,28 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><link rel="stylesheet" href="ds.css"><style>
 .reccard{padding:32px 34px;}
-.reccard .ty{display:inline-block;font-size:24px;font-weight:600;color:var(--coral);background:var(--coral-wash);border-radius:12px;padding:8px 20px;margin-bottom:16px;}
-.reccard .mt{font-size:31px;font-weight:700;line-height:1.5;margin-bottom:14px;}
-.reccard .chg{font-size:27px;color:var(--t2);}
+.reccard .ty{font-size:31px;font-weight:700;margin-bottom:14px;}
+.reccard .mt{font-size:28px;color:var(--t2);line-height:1.5;margin-bottom:18px;}
+.reccard .chg{font-size:27px;color:var(--t1);}
 .reccard .chg b{color:var(--coral);}
 .adjbox{padding:30px 34px;}
 .adjbox .h{font-size:29px;font-weight:700;margin-bottom:20px;}
 .adjrow{display:flex;padding:18px 0;border-top:1px dashed var(--div);font-size:27px;}
 .adjrow:first-of-type{border-top:none;}
 .adjrow .k{width:200px;color:var(--t3);} .adjrow .v{flex:1;font-weight:600;}
-.affcard{padding:8px 0 22px;}
-.cgrp{font-size:27px;font-weight:700;padding:26px 34px 8px;color:var(--t1);}
-.cgrp .cnt{color:var(--t3);font-weight:400;font-size:25px;margin-left:8px;}
-.crow{display:flex;align-items:center;justify-content:space-between;padding:22px 34px;border-top:1px solid var(--div);}
-.crow .cn{flex:1;font-size:28px;padding-right:16px;}
-.crow.del .cn{color:var(--t4);}
-.crow .rt{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.affcard{padding:8px 0 20px;}
+.cgrp{font-size:26px;font-weight:700;padding:26px 34px 6px;color:var(--t1);}
+.cgrp .cnt{color:var(--t3);font-weight:400;font-size:24px;margin-left:8px;}
+.crow{display:flex;align-items:center;padding:22px 34px;border-top:1px solid var(--div);}
+.crow .ci{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-right:20px;flex-shrink:0;}
+.crow .ci.video{background:linear-gradient(135deg,#FFA24D,#FF8A2A);}
+.crow .ci.prac{background:linear-gradient(135deg,#5AA9FF,#2E86FF);}
+.crow .cn{flex:1;font-size:28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.crow.del .cn{color:var(--t4);} .crow.del .ci{opacity:.45;}
 </style></head><body><div class="phone">
 <div class="statusbar"><span>9:41</span><span class="ic">▪▪▪ 📶 🔋</span></div>
 <div class="nav"><span class="back">‹</span><span class="title">计划变化详情</span></div>
 <div class="content">
-<div class="card reccard mb"><span class="ty">任务恢复</span>
+<div class="card reccard mb"><div class="ty">任务恢复</div>
 <div class="mt">你恢复了 2 个任务，后续将结合计划安排。</div>
 <div class="chg">本次变化：恢复 <b>2</b>｜删除 <b>1</b></div></div>
 <div class="card adjbox mb"><div class="h">调整内容</div>
@@ -29,9 +31,9 @@
 <div class="adjrow"><span class="k">触发方式</span><span class="v">手动恢复</span></div></div>
 <div class="card affcard mb">
 <div class="cgrp">恢复的课程<span class="cnt">· 2</span></div>
-<div class="crow"><span class="cn">言语理解 · 精讲课</span><span class="rt"><span class="badge recover">恢复</span></span></div>
-<div class="crow"><span class="cn">判断推理 · 专项练习</span><span class="rt"><span class="badge recover">恢复</span></span></div>
+<div class="crow"><span class="ci video">▶</span><span class="cn">言语理解 · 精讲课</span><span class="badge recover">已恢复</span></div>
+<div class="crow"><span class="ci prac">练</span><span class="cn">判断推理 · 专项练习</span><span class="badge recover">已恢复</span></div>
 <div class="cgrp">删除的课程<span class="cnt">· 1</span></div>
-<div class="crow del"><span class="cn">数量关系 · 专项练习</span><span class="rt"><span class="badge wait">未排入计划</span><span class="btn btn-o btn-sm">恢复</span></span></div>
+<div class="crow del"><span class="ci prac">练</span><span class="cn">数量关系 · 专项练习</span><span class="badge wait">未排入计划</span></div>
 </div>
 </div></div></body></html>
