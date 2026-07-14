@@ -1,117 +1,126 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-:root{--coral:#FF443D;--coral-2:#FF6A5A;--coral-wash:#FFECEA;--warm:#FFF3F1;--t1:#23252D;--t2:#4F5157;--t3:#9296A6;--t4:#C2C4CC;--bg:#F5F6FD;--div:#EFEFF2;--green:#24C789;}
+:root{--bg:#F5F6FD;--pink:#FFF2F1;--pinkbody:#FFFAFA;--dk:#4C0303;--t1:#23252D;--t2:#4F5157;--t3:#919296;--coral:#FF443D;--coral2:#FF5750;--btngo:#FFF2F1;--btngray:#F5F6FD;--div:#EBEBEF;}
 body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:150px;}
-.statusbar{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;font-size:30px;font-weight:600;}
+.statusbar{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 44px;font-size:30px;font-weight:600;}
 .statusbar .ic{font-size:26px;letter-spacing:5px;}
-.top{display:flex;align-items:center;justify-content:space-between;padding:8px 36px 18px;}
+.top{display:flex;align-items:center;justify-content:space-between;padding:6px 34px 16px;}
 .top .h{font-size:38px;font-weight:800;} .top .r{font-size:27px;color:var(--t2);}
 .wrap{padding:0 32px;}
-.card{background:#fff;border-radius:28px;box-shadow:0 6px 22px rgba(31,35,60,.05);}
+.mb{margin-bottom:22px;}
 /* 进度卡 */
-.prog{background:linear-gradient(135deg,#FFF3F1,#FFF8F6 70%,#fff);border:1px solid #FFE3DF;border-radius:28px;padding:26px 32px;margin-bottom:22px;}
-.prog .l1{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
-.prog .l1 .d{font-size:30px;font-weight:700;} .prog .l1 .d b{color:var(--coral);font-size:34px;margin:0 4px;}
-.prog .l1 .all{font-size:26px;color:var(--t2);}
-.prog .l2{display:flex;align-items:center;}
-.ring{width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--coral) 0 50%,#FCDAD6 50% 100%);display:flex;align-items:center;justify-content:center;margin-right:36px;flex-shrink:0;}
-.ring .in{width:92px;height:92px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.ring .in .p{font-size:34px;color:var(--coral);font-weight:800;} .ring .in .l{font-size:19px;color:var(--t3);}
-.stat{flex:1;display:flex;justify-content:space-around;}
-.stat .s{text-align:center;} .stat .s .v{font-size:34px;font-weight:800;} .stat .s .v i{font-size:22px;font-style:normal;color:var(--t3);font-weight:400;} .stat .s .k{font-size:23px;color:var(--t3);margin-top:6px;}
-/* 卡片标签 */
-.tag{display:inline-flex;align-items:center;background:var(--coral);color:#fff;font-size:25px;font-weight:700;padding:8px 20px;border-radius:12px 12px 12px 2px;}
-/* 重点直播卡 */
-.livecard{padding:26px 30px;margin-bottom:22px;}
-.livecard .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-.livecard .hd .more{font-size:25px;color:var(--t3);}
+.pcard{border-radius:32px;overflow:hidden;box-shadow:0 6px 22px rgba(31,35,60,.05);}
+.pstrip{background:var(--pink);display:flex;align-items:center;justify-content:space-between;padding:22px 34px;}
+.pstrip .l{font-size:28px;color:var(--dk);} .pstrip .l b{font-size:44px;font-weight:800;margin:0 6px;} .pstrip .l i{font-size:26px;font-style:normal;font-weight:600;}
+.pstrip .r{font-size:27px;color:rgba(76,3,3,.4);}
+.pbody{background:var(--pinkbody);display:flex;align-items:center;padding:30px 40px;}
+.ring{width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--coral) 0 50%,#FBD9D6 50% 100%);display:flex;align-items:center;justify-content:center;margin-right:44px;flex-shrink:0;}
+.ring .in{width:120px;height:120px;border-radius:50%;background:var(--pinkbody);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring .in .p{font-size:46px;font-weight:800;color:var(--t1);} .ring .in .p i{font-size:26px;font-style:normal;} .ring .in .l{font-size:20px;color:var(--t3);margin-top:2px;}
+.stats{flex:1;display:flex;justify-content:space-around;}
+.stat{text-align:center;} .stat .k{font-size:23px;color:var(--t3);margin-bottom:12px;} .stat .v{font-size:36px;font-weight:800;color:var(--t1);} .stat .v i{font-size:24px;font-style:normal;font-weight:400;color:var(--t3);}
+/* 今日直播推荐（保持不动） */
+.livecard{background:var(--pinkbody);border-radius:32px;padding:26px 34px;box-shadow:0 6px 22px rgba(31,35,60,.05);}
+.livehd{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.livetag{font-size:25px;font-weight:800;color:var(--coral);} .livetag b{background:var(--coral);color:#fff;font-size:20px;font-weight:800;padding:4px 10px;border-radius:7px;margin-right:10px;letter-spacing:1px;}
+.livehd .more{font-size:25px;color:rgba(76,3,3,.4);}
 .liverow{display:flex;align-items:center;}
-.liverow .tm{text-align:center;margin-right:26px;flex-shrink:0;}
-.liverow .tm .t{font-size:32px;font-weight:800;color:var(--coral);} .liverow .tm .d{font-size:22px;color:var(--t3);margin-top:4px;}
-.liverow .bar{width:2px;align-self:stretch;background:#FFE0DB;margin-right:26px;border-radius:2px;}
-.liverow .mid{flex:1;min-width:0;} .liverow .mid .nm{font-size:29px;font-weight:700;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;}
-.liverow .mid .sub{font-size:23px;color:var(--t3);margin-top:8px;}
-.liverow .lock{font-size:34px;color:var(--t4);margin-left:16px;}
-.note{font-size:22px;color:var(--t3);margin:14px 4px 0;background:#FBF6F5;border-radius:12px;padding:14px 20px;}
+.liverow .tm{text-align:center;margin-right:30px;flex-shrink:0;} .liverow .tm .t{font-size:34px;font-weight:800;color:var(--coral);} .liverow .tm .d{font-size:22px;color:var(--t3);margin-top:4px;}
+.liverow .dash{width:0;align-self:stretch;border-left:2px dashed #F3C9C6;margin-right:30px;}
+.liverow .mid{flex:1;min-width:0;} .liverow .mid .nm{font-size:29px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;} .liverow .mid .sub{font-size:23px;color:var(--t3);margin-top:8px;}
+.liverow .lock{font-size:32px;color:#C9C6CE;margin-left:16px;}
 /* 周历 */
-.week{display:flex;justify-content:space-between;padding:22px 6px 8px;}
-.week .wsub{font-size:25px;color:var(--t2);font-weight:600;padding:0 4px 14px;}
-.day{text-align:center;flex:1;} .day .wd{font-size:22px;color:var(--t3);} .day .dd{font-size:30px;font-weight:700;margin-top:8px;padding:6px 0;}
-.day.on .dd{background:var(--coral);color:#fff;border-radius:14px;}
-/* 任务卡 */
-.tcard{margin-bottom:22px;overflow:hidden;}
-.tcard .th{display:flex;align-items:center;justify-content:space-between;padding:26px 30px 6px;}
-.tcard .th .cnt{font-size:25px;color:var(--t3);}
-.trow{display:flex;align-items:center;padding:26px 30px;border-top:1px solid var(--div);}
-.trow:first-of-type{border-top:none;}
-.trow .ti{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-right:20px;flex-shrink:0;}
-.ti.video{background:linear-gradient(135deg,#FFA24D,#FF8A2A);} .ti.prac{background:linear-gradient(135deg,#5AA9FF,#2E86FF);} .ti.exam{background:linear-gradient(135deg,#59C2A6,#28A57F);} .ti.live{background:linear-gradient(135deg,#FF6A5A,#FF443D);}
-.trow .mid{flex:1;min-width:0;} .trow .mid .nm{font-size:29px;font-weight:600;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.35;}
-.trow .mid .mt{font-size:23px;color:var(--t3);margin-top:8px;}
-.btn{font-size:25px;font-weight:600;padding:13px 26px;border-radius:12px;flex-shrink:0;margin-left:16px;white-space:nowrap;}
-.btn.go{background:var(--coral-wash);color:var(--coral);} .btn.on{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;} .btn.gray{background:#F1F2F5;color:#9A9DA6;} .btn.blue{background:#EAF2FF;color:#2E86FF;}
-.fold{text-align:center;font-size:24px;color:var(--t3);padding:22px 0;}
+.wk{font-size:26px;font-weight:600;color:#2C2E40;padding:26px 6px 14px;display:flex;align-items:center;justify-content:space-between;}
+.wk .today{font-size:20px;font-weight:600;color:var(--coral);background:var(--pink);border-radius:8px;padding:6px 14px;}
+.week{background:#fff;border-radius:28px;box-shadow:0 6px 22px rgba(31,35,60,.05);display:flex;justify-content:space-between;padding:22px 24px;}
+.day{text-align:center;flex:1;position:relative;} .day .wd{font-size:22px;color:var(--t2);} .day .dd{font-size:40px;font-weight:400;color:var(--t1);margin-top:8px;line-height:1;padding:8px 0;border-radius:10px;}
+.day.on .wd{color:#fff;position:relative;z-index:1;} .day.on .box{position:absolute;top:34px;left:50%;transform:translateX(-50%);width:80px;height:88px;background:var(--coral2);border-radius:16px;}
+.day.on .wd,.day.on .dd{color:#fff;position:relative;z-index:1;}
+.day .dot{width:10px;height:10px;border-radius:50%;background:#FFBB38;position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);}
+/* 任务卡 通用 */
+.tcard{border-radius:32px;padding:14px 16px 18px;box-shadow:0 6px 22px rgba(31,35,60,.05);}
+.tcard.pink{background:var(--pink);} .tcard.white{background:#fff;}
+.th{display:flex;align-items:center;padding:16px 14px 14px;}
+.lab{font-size:26px;font-weight:800;color:var(--coral);border-radius:12px;padding:9px 18px;}
+.lab.onwhite{background:var(--pink);} .lab.onpink{background:#fff;}
+.th .cnt{margin-left:auto;font-size:25px;color:rgba(76,3,3,.4);} .th .cnt.fold::after{content:" ⌄";}
+.pill{background:#fff;border-radius:20px;padding:24px 26px;display:flex;align-items:center;margin:0 4px 14px;}
+.tcard.white .pill{border:1px solid #F3F3F6;}
+.pill:last-child{margin-bottom:4px;}
+.pill .ic{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-right:20px;flex-shrink:0;font-weight:700;}
+.ic.video{background:#FF8A2A;} .ic.prac{background:#2E86FF;} .ic.exam{background:#28A57F;} .ic.live{background:var(--coral);} .ic.recite{background:#FF9A2E;} .ic.read{background:#1FB877;}
+.pill .mid{flex:1;min-width:0;} .pill .mid .nm{font-size:29px;font-weight:600;color:var(--t1);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.35;} .pill .mid .mt{font-size:23px;color:var(--t3);margin-top:8px;}
+.btn{font-size:25px;font-weight:600;padding:12px 24px;border-radius:14px;flex-shrink:0;margin-left:16px;white-space:nowrap;}
+.btn.go{background:var(--btngo);color:var(--coral);} .btn.on{background:var(--coral);color:#fff;} .btn.gray{background:var(--btngray);color:#9A9DA6;} .btn.exam{background:#EAF2FF;color:#2E86FF;}
+.subtip{font-size:21px;color:var(--coral);text-align:right;margin:0 6px -6px;}
+.fold{text-align:center;font-size:24px;color:var(--t3);padding:16px 0 6px;}
+.done{width:44px;height:44px;border-radius:50%;background:#24C789;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin-left:16px;flex-shrink:0;}
 /* tabbar */
 .tabbar{position:fixed;left:0;right:0;bottom:0;width:750px;background:#fff;box-shadow:0 -3px 18px rgba(31,35,60,.06);display:flex;padding:14px 0 40px;}
-.tb{flex:1;text-align:center;font-size:21px;color:var(--t3);} .tb .i{font-size:40px;display:block;margin-bottom:4px;} .tb.on{color:var(--coral);}
+.tb{flex:1;text-align:center;font-size:21px;color:var(--t3);} .tb .i{font-size:38px;display:block;margin-bottom:4px;} .tb.on{color:var(--coral);}
 </style></head><body>
 <div class="statusbar"><span>09:41</span><span class="ic">▪▪▪ 📶 🔋</span></div>
 <div class="top"><span class="h">学习计划</span><span class="r">我的课程 ›</span></div>
 <div class="wrap">
-  <div class="prog">
-    <div class="l1"><span class="d">距离考试 <b>245</b> 天</span><span class="all">全部计划 ›</span></div>
-    <div class="l2">
-      <div class="ring"><div class="in"><span class="p">50%</span><span class="l">今日进度</span></div></div>
-      <div class="stat">
-        <div class="s"><div class="v">1.4<i> h</i></div><div class="k">学习时长</div></div>
-        <div class="s"><div class="v">2<i>/4</i></div><div class="k">今日任务</div></div>
-        <div class="s"><div class="v">2<i>/4</i></div><div class="k">补给任务</div></div>
+  <!-- 进度卡 -->
+  <div class="pcard mb">
+    <div class="pstrip"><span class="l">距离考试 <b>245</b><i>天</i></span><span class="r">全部计划 ›</span></div>
+    <div class="pbody">
+      <div class="ring"><div class="in"><span class="p">50<i>%</i></span><span class="l">今日进度</span></div></div>
+      <div class="stats">
+        <div class="stat"><div class="k">学习时长</div><div class="v">1.4<i>h</i></div></div>
+        <div class="stat"><div class="k">今日任务</div><div class="v">2<i>/4</i></div></div>
+        <div class="stat"><div class="k">补给任务</div><div class="v">2<i>/4</i></div></div>
       </div>
     </div>
   </div>
 
-  <!-- 顶部「今日直播推荐」：原有，保持不动 -->
-  <div class="card livecard">
-    <div class="hd"><span class="tag">今日直播推荐</span><span class="more">全部 3 个 ⌄</span></div>
+  <!-- 今日直播推荐（原有，保持不动） -->
+  <div class="livecard mb">
+    <div class="livehd"><span class="livetag"><b>LIVE</b>今日直播推荐</span><span class="more">全部 3 个 ⌄</span></div>
     <div class="liverow">
       <div class="tm"><div class="t">17:00</div><div class="d">今日</div></div>
-      <div class="bar"></div>
+      <div class="dash"></div>
       <div class="mid"><div class="nm">第 15 讲 26年3月 – 判断推理（近义实词辨析）</div><div class="sub">综合 · 2026事业单位刷题课堂 – 职测</div></div>
       <div class="lock">🔒</div>
     </div>
   </div>
 
-  <div class="wsub">计划第 13 周（共 18 周）· 3月</div>
-  <div class="card" style="padding:6px 20px 16px;">
-    <div class="week">
-      <div class="day"><div class="wd">周一</div><div class="dd">09</div></div>
-      <div class="day"><div class="wd">周二</div><div class="dd">10</div></div>
-      <div class="day"><div class="wd">周三</div><div class="dd">11</div></div>
-      <div class="day on"><div class="wd">周四</div><div class="dd">12</div></div>
-      <div class="day"><div class="wd">今日</div><div class="dd">13</div></div>
-      <div class="day"><div class="wd">周六</div><div class="dd">14</div></div>
-      <div class="day"><div class="wd">周日</div><div class="dd">15</div></div>
-    </div>
+  <!-- 周历 -->
+  <div class="wk">计划第 13 周（共 18 周）· 3月<span class="today">今</span></div>
+  <div class="week mb">
+    <div class="day"><div class="wd">周一</div><div class="dd">09</div><span class="dot"></span></div>
+    <div class="day"><div class="wd">周二</div><div class="dd">10</div></div>
+    <div class="day"><div class="wd">周三</div><div class="dd">11</div><span class="dot"></span></div>
+    <div class="day on"><span class="box"></span><div class="wd">周四</div><div class="dd">12</div></div>
+    <div class="day"><div class="wd">今日</div><div class="dd">13</div></div>
+    <div class="day"><div class="wd">周六</div><div class="dd">14</div></div>
+    <div class="day"><div class="wd">周日</div><div class="dd">15</div></div>
   </div>
 
-  <div class="card tcard" style="margin-top:22px;">
-    <div class="th"><span class="tag">今日任务</span><span class="cnt">1/8</span></div>
-    <div class="trow"><span class="ti video">▶</span><span class="mid"><span class="nm">数量关系</span><span class="mt">预计 25min ｜ 已观看 75%</span></span><span class="btn go">去学习</span></div>
-    <div class="trow"><span class="ti prac">练</span><span class="mid"><span class="nm">数量关系</span><span class="mt">预计 25min ｜ 题目数量 10</span></span><span class="btn on">继续练习</span></div>
-    <div class="trow"><span class="ti exam">考</span><span class="mid"><span class="nm">言语理解练习题</span><span class="mt">预计 25min ｜ 题目数量 28</span></span><span class="btn blue">去考试</span></div>
-    <div class="trow"><span class="ti video">▶</span><span class="mid"><span class="nm">我是超级长的任务名称不管多少字都要全部展示出来</span><span class="mt">预计 25min ｜ 已观看 0%</span></span><span class="btn go">去学习</span></div>
+  <!-- 今日任务（粉容器 + 白任务块） -->
+  <div class="tcard pink mb">
+    <div class="th"><span class="lab onpink">今日任务</span><span class="cnt">1/8</span></div>
+    <div class="pill"><span class="ic video">▶</span><span class="mid"><span class="nm">数量关系</span><span class="mt">预计 25min ｜ 已观看 75%</span></span><span class="btn go">去学习</span></div>
+    <div class="subtip">上次学到</div>
+    <div class="pill"><span class="ic prac">练</span><span class="mid"><span class="nm">数量关系</span><span class="mt">预计 25min ｜ 题目数量 10</span></span><span class="btn on">继续练习</span></div>
+    <div class="pill"><span class="ic exam">考</span><span class="mid"><span class="nm">言语理解练习题</span><span class="mt">预计 25min ｜ 题目数量 28</span></span><span class="btn exam">去考试</span></div>
+    <div class="pill"><span class="ic video">▶</span><span class="mid"><span class="nm">我是超级长的任务名称不管多少字都要全部展示出来</span><span class="mt">预计 25min ｜ 已观看 0%</span></span><span class="btn go">去学习</span></div>
     <div class="fold">展开已完成 2 个任务 ⌄</div>
   </div>
 
-  <div class="card tcard">
-    <div class="th"><span class="tag">重点直播</span><span class="cnt">1</span></div>
-    <div class="trow"><span class="ti live">播</span><span class="mid"><span class="nm">第 15 讲 · 判断推理（近义实词辨析）</span><span class="mt">主讲 李思栋 ｜ 17:00 开课</span></span><span class="btn gray">未开始</span></div>
+  <!-- 重点直播（同款样式，夹在今日任务与补给任务之间） -->
+  <div class="tcard pink mb">
+    <div class="th"><span class="lab onpink">重点直播</span><span class="cnt">1</span></div>
+    <div class="pill"><span class="ic live">播</span><span class="mid"><span class="nm">第 15 讲 · 判断推理（近义实词辨析）</span><span class="mt">主讲 李思栋 ｜ 17:00 开课</span></span><span class="btn gray">未开始</span></div>
   </div>
 
-  <div class="card tcard">
-    <div class="th"><span class="tag">补给任务</span><span class="cnt">1/4 ⌄</span></div>
-    <div class="trow"><span class="ti video">背</span><span class="mid"><span class="nm">背诵 · 习近平主持东北全面振兴座谈会</span><span class="mt">预计 10min</span></span><span class="btn go">去学习</span></div>
-    <div class="trow"><span class="ti prac">练</span><span class="mid"><span class="nm">智能练习 · 习近平振兴东北座谈会</span><span class="mt">预计 10min ｜ 题目数量 3</span></span><span class="btn go">去练习</span></div>
+  <!-- 补给任务（白容器 + 粉标签） -->
+  <div class="tcard white mb">
+    <div class="th"><span class="lab onwhite">补给任务</span><span class="cnt fold">1/4</span></div>
+    <div class="pill"><span class="ic recite">背</span><span class="mid"><span class="nm">背诵 · 习近平主持东北全面振兴座谈会</span><span class="mt">预计 10min</span></span><span class="btn go">去学习</span></div>
+    <div class="pill"><span class="ic prac">练</span><span class="mid"><span class="nm">智能练习 · 习近平振兴东北座谈会</span><span class="mt">预计 10min ｜ 题目数量 3</span></span><span class="btn go">去练习</span></div>
+    <div class="pill"><span class="ic read">阅</span><span class="mid"><span class="nm">阅读 · 全过程人民民主的重大理念</span><span class="mt">预计 10min</span></span><span class="done">✓</span></div>
   </div>
 </div>
 <div class="tabbar"><span class="tb"><span class="i">🏠</span>首页</span><span class="tb on"><span class="i">📘</span>学习</span><span class="tb"><span class="i">📊</span>数据</span><span class="tb"><span class="i">▶️</span>上课</span><span class="tb"><span class="i">👤</span>我的</span></div>
