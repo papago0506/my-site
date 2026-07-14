@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+:root{--pink:#FFF2F1;--coral:#FF443D;--t1:#23252D;--t3:#919296;--gray:#F5F6FD;--div:#F0F0F3;}
+body{width:750px;background:#F5F6FD;color:var(--t1);padding:20px 32px 40px;}
+.vlab{font-size:26px;font-weight:800;color:var(--coral);margin:30px 4px 14px;}
+.vlab span{color:var(--t3);font-weight:400;font-size:23px;margin-left:12px;}
+.card{background:#fff;border-radius:28px;box-shadow:0 6px 22px rgba(31,35,60,.05);padding:14px 16px 20px;}
+.th{display:flex;align-items:center;padding:16px 14px 12px;}
+.lab{font-size:26px;font-weight:800;color:var(--coral);background:var(--pink);border-radius:12px;padding:9px 18px;}
+.th .cnt{margin-left:auto;font-size:24px;color:var(--t3);}
+.row{display:flex;align-items:center;padding:22px 24px;border-top:1px solid var(--div);}
+.row:first-of-type{border-top:none;}
+.ic{width:48px;height:48px;border-radius:13px;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;margin-right:20px;flex-shrink:0;}
+.nm{flex:1;min-width:0;} .nm .t{font-size:29px;font-weight:600;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;} .nm .m{font-size:23px;color:var(--t3);margin-top:8px;}
+.btn{font-size:25px;font-weight:600;padding:12px 24px;border-radius:14px;flex-shrink:0;margin-left:16px;white-space:nowrap;}
+.btn.go{background:var(--pink);color:var(--coral);} .btn.gray{background:var(--gray);color:#9A9DA6;} .btn.on{background:var(--coral);color:#fff;}
+/* V2 时间块 */
+.tm{text-align:center;margin-right:24px;flex-shrink:0;} .tm .t{font-size:32px;font-weight:800;color:var(--coral);} .tm .d{font-size:21px;color:var(--t3);margin-top:2px;}
+.tmdash{border-left:2px dashed #F3C9C6;align-self:stretch;margin-right:24px;}
+/* V3 状态标签 */
+.st{font-size:21px;font-weight:600;padding:5px 14px;border-radius:8px;margin-left:14px;flex-shrink:0;}
+.st.live{background:var(--coral);color:#fff;} .st.soon{background:var(--gray);color:#9A9DA6;} .st.replay{background:#EAF2FF;color:#2E86FF;}
+/* V4 头像 */
+.av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#6B6584,#857F9D);margin-right:20px;flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;font-size:34px;overflow:hidden;}
+/* V5 紧凑 */
+.chip{font-size:22px;font-weight:600;color:var(--coral);background:var(--pink);border-radius:8px;padding:5px 14px;margin-left:14px;flex-shrink:0;}
+.nm .one{font-size:28px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+</style></head><body>
+
+<div class="vlab">版本 1<span>标准 — 与补给任务行完全一致（播图标 + 讲次名 + 主讲/时间 + 状态按钮）</span></div>
+<div class="card">
+  <div class="th"><span class="lab">重点直播</span><span class="cnt">1</span></div>
+  <div class="row"><span class="ic">播</span><span class="nm"><span class="t">第 15 讲 · 判断推理（近义实词辨析）</span><span class="m">主讲 李思栋 ｜ 17:00 开课</span></span><span class="btn gray">未开始</span></div>
+</div>
+
+<div class="vlab">版本 2<span>时间块前置 — 左侧突出开课时间（承接「今日直播推荐」的时间样式）</span></div>
+<div class="card">
+  <div class="th"><span class="lab">重点直播</span><span class="cnt">1</span></div>
+  <div class="row"><span class="tm"><span class="t">17:00</span><span class="d">今日</span></span><span class="tmdash"></span><span class="nm"><span class="t">第 15 讲 · 判断推理（近义实词辨析）</span><span class="m">主讲 李思栋</span></span><span class="btn go">去上课</span></div>
+</div>
+
+<div class="vlab">版本 3<span>直播状态标签 — 名称后带「直播中/未开始/看回放」状态,右侧操作按钮</span></div>
+<div class="card">
+  <div class="th"><span class="lab">重点直播</span><span class="cnt">2</span></div>
+  <div class="row"><span class="ic">播</span><span class="nm"><span class="t">第 15 讲 · 判断推理（近义实词辨析）</span><span class="m">主讲 李思栋 ｜ 17:00 开课</span></span><span class="st live">直播中</span><span class="btn on">去上课</span></div>
+  <div class="row"><span class="ic">播</span><span class="nm"><span class="t">第 14 讲 · 资料分析速算技巧</span><span class="m">主讲 王敏 ｜ 已结束</span></span><span class="st replay">看回放</span><span class="btn go">去看</span></div>
+</div>
+
+<div class="vlab">版本 4<span>讲师头像 — 更像直播预约,头像 + 主讲 + 时间 + 去上课</span></div>
+<div class="card">
+  <div class="th"><span class="lab">重点直播</span><span class="cnt">1</span></div>
+  <div class="row"><span class="av">👩🏻</span><span class="nm"><span class="t">第 15 讲 · 判断推理（近义实词辨析）</span><span class="m">主讲 李思栋 ｜ 今日 17:00 开课</span></span><span class="btn go">去上课</span></div>
+</div>
+
+<div class="vlab">版本 5<span>紧凑单行 — 最省空间,讲次名单行 + 时间 chip + 按钮</span></div>
+<div class="card">
+  <div class="th"><span class="lab">重点直播</span><span class="cnt">1</span></div>
+  <div class="row"><span class="ic">播</span><span class="nm"><span class="one">第 15 讲 · 判断推理（近义实词辨析）</span></span><span class="chip">17:00</span><span class="btn gray">未开始</span></div>
+</div>
+
+</body></html>
