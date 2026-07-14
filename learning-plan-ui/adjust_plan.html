@@ -1,54 +1,104 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-:root{--coral:#FF443D;--coral-2:#FF6A5A;--coral-wash:#FFECEA;--warm:#FFF8F7;--t1:#23252D;--t2:#4F5157;--t3:#919296;--t4:#C2C4CC;--bg:#F5F6FD;--div:#EEEEF1;--violet-bg:#EEE8FB;--violet:#8158CC;}
-body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:170px;}
+:root{--coral:#FF443D;--coral-2:#FF6A5A;--coral-wash:#FFECEA;--warm:#FFF6F4;--t1:#23252D;--t2:#4F5157;--t3:#9296A6;--t4:#C2C4CC;--bg:#F5F6FD;--div:#EFEFF2;--pill:#F3F4F8;}
+body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:190px;}
 .statusbar{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;font-size:30px;font-weight:600;}
 .statusbar .ic{font-size:26px;letter-spacing:5px;}
 .nav{height:92px;display:flex;align-items:center;justify-content:center;position:relative;}
-.nav .back{position:absolute;left:32px;font-size:46px;} .nav .title{font-size:34px;font-weight:700;}
-.content{padding:8px 32px 40px;}
-.card{background:#fff;border-radius:32px;box-shadow:0 6px 24px rgba(31,35,60,.05);margin-bottom:26px;overflow:hidden;}
-.ch{font-size:31px;font-weight:700;padding:32px 34px 6px;}
-.ch .cnt{color:var(--t3);font-weight:400;font-size:25px;margin-left:8px;}
-.chsub{font-size:24px;color:var(--t3);padding:0 34px 14px;line-height:1.5;}
-.set{display:flex;align-items:center;padding:30px 34px;border-top:1px solid var(--div);}
-.set:first-of-type{border-top:none;}
-.set .k{flex:1;font-size:29px;} .set .v{font-size:29px;color:var(--t2);font-weight:600;margin-right:14px;} .set .arr{font-size:30px;color:var(--t4);}
-/* 待排任务行：恢复按钮在最前，可切换为待恢复✓ */
-.trow{display:flex;align-items:center;padding:26px 34px;border-top:1px solid var(--div);}
-.recover{font-size:23px;font-weight:600;border-radius:12px;flex-shrink:0;margin-right:22px;white-space:nowrap;}
-.recover.off{color:var(--coral);border:1px solid var(--coral);padding:10px 26px;}
-.recover.on{color:#fff;background:linear-gradient(135deg,var(--coral-2),var(--coral));padding:11px 22px;box-shadow:0 6px 14px rgba(255,68,61,.28);}
-.trow .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-right:18px;flex-shrink:0;}
-.ic.video{background:linear-gradient(135deg,#FFA24D,#FF8A2A);} .ic.prac{background:linear-gradient(135deg,#5AA9FF,#2E86FF);}
-.trow .nm{flex:1;min-width:0;font-size:28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.trow .tag{font-size:21px;font-weight:600;padding:6px 16px;border-radius:9px;flex-shrink:0;margin-left:14px;}
-.tag.wait{background:var(--violet-bg);color:var(--violet);} .tag.sel{background:var(--coral-wash);color:var(--coral);}
-/* 未选中（待恢复态）行灰显；已选中行正常 */
-.trow.off .ic{opacity:.5;} .trow.off .nm{color:var(--t4);}
-.trow.on .nm{color:var(--t1);}
-.tip{font-size:23px;color:var(--t3);text-align:center;padding:24px 0 4px;}
-/* 底部确认栏 */
-.bar{position:fixed;left:0;right:0;bottom:0;width:750px;background:#fff;box-shadow:0 -4px 24px rgba(31,35,60,.08);padding:24px 36px 46px;}
-.confirm{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;font-size:33px;font-weight:700;text-align:center;padding:28px 0;border-radius:50px;box-shadow:0 10px 24px rgba(255,68,61,.3);}
-.confirm .n{font-weight:400;font-size:26px;}
+.nav .back{position:absolute;left:32px;font-size:46px;} .nav .title{font-size:34px;font-weight:700;} .nav .right{position:absolute;right:32px;font-size:27px;color:var(--t2);}
+.banner{margin:6px 32px 24px;background:var(--coral-wash);border-radius:16px;text-align:center;font-size:25px;color:var(--t2);padding:16px 0;}
+.banner b{color:var(--coral);font-weight:700;}
+.content{padding:0 32px;}
+.sec{font-size:31px;font-weight:700;margin:30px 4px 18px;} .sec .hint{font-size:24px;color:var(--t3);font-weight:400;margin-left:10px;}
+.card{background:#fff;border-radius:28px;box-shadow:0 6px 22px rgba(31,35,60,.05);overflow:hidden;}
+/* 备考目标 */
+.goalcard{background:linear-gradient(135deg,#FFF3F1,#fff 70%);border:1px solid #FFE3DF;padding:30px 32px;position:relative;}
+.goalcard .cur{position:absolute;right:0;top:30px;background:var(--coral);color:#fff;font-size:21px;padding:7px 20px 7px 18px;border-radius:16px 0 0 16px;}
+.goalcard .gt{font-size:31px;font-weight:700;line-height:1.4;margin-bottom:16px;padding-right:120px;}
+.goalcard .tags{display:flex;gap:12px;margin-bottom:24px;}
+.goalcard .tags span{background:#F3F4F8;color:var(--t2);font-size:22px;padding:6px 18px;border-radius:8px;}
+.goalcard .time{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #FFE3DF;padding-top:22px;font-size:26px;}
+.goalcard .time .k{color:var(--t2);} .goalcard .time .v{font-weight:700;} .goalcard .time .arr{color:var(--t4);margin-left:8px;}
+/* 每日学习时长 */
+.dayrow{display:flex;align-items:center;justify-content:space-between;padding:24px 32px;border-top:1px solid var(--div);}
+.dayrow:first-child{border-top:none;}
+.dayrow .d{font-size:28px;color:var(--t2);}
+.stepper{display:flex;align-items:center;background:var(--pill);border-radius:12px;}
+.stepper .b{width:56px;text-align:center;font-size:30px;color:var(--t3);padding:12px 0;}
+.stepper .val{font-size:26px;font-weight:700;padding:12px 8px;min-width:104px;text-align:center;}
+/* 计划顺序调整 树 */
+.tree{padding:10px 0;}
+.stage{display:flex;align-items:center;padding:26px 32px;font-size:31px;font-weight:700;}
+.stage .dot{width:40px;height:40px;border-radius:50%;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;margin-right:16px;flex-shrink:0;}
+.stage .drag{margin-left:auto;color:var(--t4);font-size:34px;}
+.subj{background:var(--warm);border:1px solid #FFEDEA;border-radius:18px;margin:0 24px 16px;padding:22px 26px;}
+.subj .sh{display:flex;align-items:center;font-size:29px;font-weight:700;}
+.subj .sh .cir{width:36px;height:36px;border-radius:50%;border:2px solid var(--coral);color:var(--coral);display:flex;align-items:center;justify-content:center;font-size:18px;margin-right:14px;flex-shrink:0;}
+.subj .sh .drag{margin-left:auto;color:var(--t4);font-size:32px;}
+.subj .meta{font-size:23px;color:var(--t3);padding-left:50px;margin-top:8px;}
+.task{display:flex;align-items:center;padding:20px 0 20px 50px;border-top:1px solid #F3E7E4;}
+.task:first-of-type{border-top:none;margin-top:14px;}
+.task .ti{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;margin-right:16px;flex-shrink:0;}
+.ti.video{background:linear-gradient(135deg,#FFA24D,#FF8A2A);} .ti.prac{background:linear-gradient(135deg,#5AA9FF,#2E86FF);} .ti.recite{background:linear-gradient(135deg,#FFB25A,#FF9A2E);}
+.task .tn{flex:1;min-width:0;font-size:27px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.task .drag{color:var(--t4);font-size:30px;margin-left:14px;}
+/* 恢复按钮（未排入任务前置，无未排入标签） */
+.rec{font-size:22px;font-weight:600;border-radius:10px;flex-shrink:0;margin-right:16px;white-space:nowrap;}
+.rec.off{color:var(--coral);border:1px solid var(--coral);padding:8px 20px;}
+.rec.on{color:#fff;background:linear-gradient(135deg,var(--coral-2),var(--coral));padding:9px 18px;}
+.task.uns .tn{color:var(--t3);} .task.uns .ti{opacity:.55;}
+.task.pick .tn{color:var(--t1);} .task.pick .ti{opacity:1;}
+/* 调整原因 */
+.chips{display:flex;flex-wrap:wrap;gap:16px;}
+.chips .c{font-size:25px;color:var(--t2);background:#fff;border:1px solid #E7E8EE;border-radius:12px;padding:14px 26px;}
+.chips .c.on{color:var(--coral);border-color:var(--coral);background:var(--coral-wash);font-weight:600;}
+/* 底栏 */
+.bar{position:fixed;left:0;right:0;bottom:0;width:750px;background:#fff;box-shadow:0 -4px 24px rgba(31,35,60,.08);padding:22px 32px 46px;display:flex;gap:24px;}
+.bar .cancel{flex:1;border:1px solid var(--coral);color:var(--coral);border-radius:50px;text-align:center;font-size:31px;font-weight:600;padding:26px 0;}
+.bar .ok{flex:1.4;background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;border-radius:50px;text-align:center;font-size:31px;font-weight:700;padding:26px 0;box-shadow:0 10px 24px rgba(255,68,61,.3);}
 </style></head><body>
-<div class="statusbar"><span>9:41</span><span class="ic">▪▪▪ 📶 🔋</span></div>
-<div class="nav"><span class="back">‹</span><span class="title">调整计划</span></div>
+<div class="statusbar"><span>09:41</span><span class="ic">▪▪▪ 📶 🔋</span></div>
+<div class="nav"><span class="back">‹</span><span class="title">调整计划</span><span class="right">调整记录</span></div>
+<div class="banner">每周可调整 <b>7</b> 次学习计划，当前剩余 <b>6</b> 次</div>
 <div class="content">
-<div class="card">
-  <div class="ch">学习设置</div>
-  <div class="set"><span class="k">每日学习时长</span><span class="v">3 小时</span><span class="arr">›</span></div>
-  <div class="set"><span class="k">考试日期</span><span class="v">2027-04-15</span><span class="arr">›</span></div>
+  <div class="sec">备考目标</div>
+  <div class="goalcard">
+    <span class="cur">✓ 当前目标</span>
+    <div class="gt">2027年河南省公务员考试（27河南省考试）</div>
+    <div class="tags"><span>河南</span><span>公务员</span></div>
+    <div class="time"><span class="k">🎯 目标考试时间</span><span><span class="v">2027年06月24日</span><span class="arr">›</span></span></div>
+  </div>
+
+  <div class="sec">每日学习时长</div>
+  <div class="card">
+    <div class="dayrow"><span class="d">周一</span><span class="stepper"><span class="b">‹</span><span class="val">2 小时</span><span class="b">›</span></span></div>
+    <div class="dayrow"><span class="d">周二</span><span class="stepper"><span class="b">‹</span><span class="val">2 小时</span><span class="b">›</span></span></div>
+    <div class="dayrow"><span class="d">周三</span><span class="stepper"><span class="b">‹</span><span class="val">2 小时</span><span class="b">›</span></span></div>
+    <div class="dayrow"><span class="d">周四</span><span class="stepper"><span class="b">‹</span><span class="val">2 小时</span><span class="b">›</span></span></div>
+    <div class="dayrow"><span class="d">周五</span><span class="stepper"><span class="b">‹</span><span class="val">2 小时</span><span class="b">›</span></span></div>
+    <div class="dayrow"><span class="d">周六</span><span class="stepper"><span class="b">‹</span><span class="val">4 小时</span><span class="b">›</span></span></div>
+    <div class="dayrow"><span class="d">周日</span><span class="stepper"><span class="b">‹</span><span class="val">4 小时</span><span class="b">›</span></span></div>
+  </div>
+
+  <div class="sec">计划顺序调整<span class="hint">（拖拽排序；未排入任务点「恢复」加回）</span></div>
+  <div class="card tree">
+    <div class="stage"><span class="dot">✓</span>理论速通<span class="drag">☰</span></div>
+    <div class="subj">
+      <div class="sh"><span class="cir">⌃</span>语言理解与表达<span class="drag">☰</span></div>
+      <div class="meta">共 110 个学习任务 ｜ 预计需 37 小时</div>
+      <div class="task"><span class="ti video">▶</span><span class="tn">细节判断 · 言语理解精讲</span><span class="drag">☰</span></div>
+      <div class="task"><span class="ti prac">练</span><span class="tn">细节判断 · 专项练习</span><span class="drag">☰</span></div>
+      <div class="task pick"><span class="rec on">待恢复</span><span class="ti video">▶</span><span class="tn">主旨概括 · 言语理解精讲</span></div>
+      <div class="task uns"><span class="rec off">恢复</span><span class="ti prac">练</span><span class="tn">逻辑填空 · 专项练习</span></div>
+    </div>
+    <div class="subj">
+      <div class="sh"><span class="cir">⌄</span>判断推理<span class="drag">☰</span></div>
+      <div class="meta">共 62 个学习任务 ｜ 预计需 50 小时</div>
+    </div>
+  </div>
+
+  <div class="sec">调整原因<span class="hint">（可选）</span></div>
+  <div class="chips"><span class="c on">时间太忙</span><span class="c">进度太快</span><span class="c">进度太慢</span><span class="c">备考重点变化</span><span class="c">其他</span></div>
 </div>
-<div class="card">
-  <div class="ch">待排任务<span class="cnt">· 3</span></div>
-  <div class="chsub">勾选要恢复的任务（可多选），点底部「确认调整」统一生效；若时长不够会弹出提示，选择加时长或删减其他任务。</div>
-  <div class="trow on"><span class="recover on">待恢复 ✓</span><span class="ic prac">练</span><span class="nm">逻辑填空 · 专项练习</span><span class="tag sel">待恢复</span></div>
-  <div class="trow on"><span class="recover on">待恢复 ✓</span><span class="ic video">▶</span><span class="nm">常识判断 · 视频精讲</span><span class="tag sel">待恢复</span></div>
-  <div class="trow off"><span class="recover off">恢复</span><span class="ic prac">练</span><span class="nm">资料分析 · 专项练习</span><span class="tag wait">未排入</span></div>
-  <div class="tip">仅展示可恢复的未排入任务</div>
-</div>
-</div>
-<div class="bar"><div class="confirm">确认调整<span class="n">（已选 2 个恢复）</span></div></div>
+<div class="bar"><span class="cancel">取消调整</span><span class="ok">确定调整</span></div>
 </body></html>
