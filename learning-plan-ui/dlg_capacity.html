@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
+:root{--coral:#FF443D;--coral-2:#FF6A5A;--coral-wash:#FFF1F0;--t1:#23252D;--t2:#4F5157;--t3:#919296;--div:#EEEEF1;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.screen{width:750px;height:1240px;position:relative;background:linear-gradient(180deg,#EDE5F5,#F5F6FD);overflow:hidden;}
+.mask{position:absolute;inset:0;background:rgba(28,30,42,.5);}
+.dlg{position:absolute;left:40px;right:40px;bottom:70px;background:#fff;border-radius:36px;padding:46px 40px 40px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.h{font-size:36px;font-weight:700;text-align:center;margin-bottom:20px;}
+.body{font-size:27px;color:var(--t2);line-height:1.6;text-align:center;margin-bottom:28px;}
+.stat{display:flex;gap:20px;margin-bottom:34px;}
+.stat .box{flex:1;border:1px solid #EEE;border-radius:20px;padding:26px 0;text-align:center;}
+.stat .num{font-size:50px;font-weight:800;} .stat .k{font-size:24px;color:var(--t3);margin-top:6px;}
+.acts{display:flex;gap:22px;}
+.b{flex:1;text-align:center;padding:24px 0;border-radius:44px;font-size:30px;font-weight:700;}
+.b-sec{border:2px solid #E2E3E9;color:var(--t2);}
+.b-pri{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;box-shadow:0 10px 22px rgba(255,68,61,.3);}
+</style></head><body>
+<div class="screen"><div class="mask"></div>
+<div class="dlg">
+<div class="h">学习计划需要调整</div>
+<div class="body">按你当前的学习时长，后续计划学不完，将按优先级删减部分靠后任务。你可以加学习时长尽量保留，或接受删减。</div>
+<div class="stat">
+  <div class="box"><div class="num" style="color:var(--t1)">2.5<span style="font-size:26px">h</span></div><div class="k">还差时长</div></div>
+  <div class="box"><div class="num" style="color:var(--coral)">8</div><div class="k">将删减（未排入）</div></div>
+</div>
+<div class="acts"><span class="b b-sec">接受删减</span><span class="b b-pri">去加时长</span></div>
+</div></div></body></html>
