@@ -1,20 +1,39 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
-:root{--coral:#FF443D;--coral-2:#FF6A5A;--coral-wash:#FFF1F0;--t1:#23252D;--t2:#4F5157;--t3:#919296;--div:#EEEEF1;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-.screen{width:750px;height:1200px;position:relative;background:linear-gradient(180deg,#EDE5F5,#F5F6FD);overflow:hidden;}
-.mask{position:absolute;inset:0;background:rgba(28,30,42,.5);}
-.dlg{position:absolute;left:40px;right:40px;bottom:70px;background:#fff;border-radius:36px;padding:46px 40px 40px;box-shadow:0 20px 60px rgba(0,0,0,.25);}
-.h{font-size:36px;font-weight:700;text-align:center;margin-bottom:20px;}
-.body{font-size:27px;color:var(--t2);line-height:1.65;text-align:center;margin-bottom:34px;}
-.body b{color:var(--coral);font-weight:700;}
-.acts{display:flex;gap:22px;}
-.b{flex:1;text-align:center;padding:24px 0;border-radius:44px;font-size:30px;font-weight:700;}
-.b-sec{border:2px solid #E2E3E9;color:var(--t2);}
-.b-pri{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;box-shadow:0 10px 22px rgba(255,68,61,.3);}
+.screen{width:750px;height:1180px;position:relative;background:#5b5d67;overflow:hidden;}
+.sheet{position:absolute;left:40px;right:40px;bottom:64px;}
+.card{background:#fff;border-radius:40px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.28);}
+.header{background:linear-gradient(120deg,#FFE9D9,#FBEACC);border-radius:40px 40px 0 0;padding:38px 40px 32px;display:flex;gap:24px;align-items:flex-start;}
+.avatar{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#6B6584,#857F9D);flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;font-size:52px;overflow:hidden;}
+.aw{flex-shrink:0;text-align:center;} .aname{font-size:20px;color:#7a5647;margin-top:8px;white-space:nowrap;}
+.msg{flex:1;font-size:28px;line-height:1.55;color:#4C0303;font-weight:500;}
+.msg .em{color:#FF443D;font-weight:700;}
+.divider{position:relative;border-top:2px dashed #EBD9CD;margin:0 40px;}
+.notch{position:absolute;top:-19px;width:38px;height:38px;border-radius:50%;background:#5b5d67;}
+.nl{left:-59px;} .nr{right:-59px;}
+.body{padding:34px 40px 32px;}
+.title{font-size:32px;font-weight:700;color:#FF443D;line-height:1.5;margin-bottom:26px;}
+.statbox{background:#F5F6F8;border-radius:22px;padding:6px 28px;}
+.srow{display:flex;justify-content:space-between;align-items:center;padding:22px 0;}
+.srow .k{font-size:24px;color:#9296A6;font-weight:500;} .srow .v{font-size:30px;color:#23252D;font-weight:700;} .srow .v.coral{color:#FF443D;}
+.pri{margin-top:30px;background:linear-gradient(135deg,#FF6A5A,#FF443D);color:#fff;border-radius:50px;padding:28px 0;text-align:center;font-size:32px;font-weight:700;box-shadow:0 12px 26px rgba(255,68,61,.32);}
+.sectext{margin-top:28px;text-align:center;font-size:28px;color:#8A8D96;}
 </style></head><body>
-<div class="screen"><div class="mask"></div>
-<div class="dlg">
-<div class="h">考前可能学不完</div>
-<div class="body">即使每天按最大时长学习、并保留最核心内容，预计到考试仍有 <b>5 个</b>任务学不完。建议延后考试日期，或按当前进度尽力学习。</div>
-<div class="acts"><span class="b b-sec">按当前进度学</span><span class="b b-pri">去改考试日期</span></div>
+<div class="screen"><div class="sheet">
+<div class="card">
+  <div class="header">
+    <div class="aw"><div class="avatar">👩🏻</div><div class="aname">李思栋老师</div></div>
+    <div class="msg">我已按最核心内容帮你压缩了计划，但即使全力追赶，<span class="em">考前仍无法全部学完</span>，请做出决策</div>
+  </div>
+  <div class="divider"><span class="notch nl"></span><span class="notch nr"></span></div>
+  <div class="body">
+    <div class="title">已压到最紧，考前仍有部分任务学不完</div>
+    <div class="statbox">
+      <div class="srow"><span class="k">仍学不完</span><span class="v coral">5 个</span></div>
+      <div class="srow"><span class="k">每日已达上限</span><span class="v">14 小时</span></div>
+    </div>
+  </div>
+</div>
+<div class="pri">去改考试日期</div>
+<div class="sectext">按当前进度尽力学</div>
 </div></div></body></html>
