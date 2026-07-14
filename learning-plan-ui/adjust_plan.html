@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+:root{--coral:#FF443D;--coral-2:#FF6A5A;--coral-wash:#FFECEA;--warm:#FFF8F7;--t1:#23252D;--t2:#4F5157;--t3:#919296;--t4:#C2C4CC;--bg:#F5F6FD;--div:#EEEEF1;--violet-bg:#EEE8FB;--violet:#8158CC;}
+body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:170px;}
+.statusbar{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;font-size:30px;font-weight:600;}
+.statusbar .ic{font-size:26px;letter-spacing:5px;}
+.nav{height:92px;display:flex;align-items:center;justify-content:center;position:relative;}
+.nav .back{position:absolute;left:32px;font-size:46px;} .nav .title{font-size:34px;font-weight:700;}
+.content{padding:8px 32px 40px;}
+.card{background:#fff;border-radius:32px;box-shadow:0 6px 24px rgba(31,35,60,.05);margin-bottom:26px;overflow:hidden;}
+.ch{font-size:31px;font-weight:700;padding:32px 34px 6px;}
+.ch .cnt{color:var(--t3);font-weight:400;font-size:25px;margin-left:8px;}
+.chsub{font-size:24px;color:var(--t3);padding:0 34px 14px;line-height:1.5;}
+.set{display:flex;align-items:center;padding:30px 34px;border-top:1px solid var(--div);}
+.set:first-of-type{border-top:none;}
+.set .k{flex:1;font-size:29px;} .set .v{font-size:29px;color:var(--t2);font-weight:600;margin-right:14px;} .set .arr{font-size:30px;color:var(--t4);}
+/* 待排任务行：恢复按钮在最前，可切换为待恢复✓ */
+.trow{display:flex;align-items:center;padding:26px 34px;border-top:1px solid var(--div);}
+.recover{font-size:23px;font-weight:600;border-radius:12px;flex-shrink:0;margin-right:22px;white-space:nowrap;}
+.recover.off{color:var(--coral);border:1px solid var(--coral);padding:10px 26px;}
+.recover.on{color:#fff;background:linear-gradient(135deg,var(--coral-2),var(--coral));padding:11px 22px;box-shadow:0 6px 14px rgba(255,68,61,.28);}
+.trow .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-right:18px;flex-shrink:0;}
+.ic.video{background:linear-gradient(135deg,#FFA24D,#FF8A2A);} .ic.prac{background:linear-gradient(135deg,#5AA9FF,#2E86FF);}
+.trow .nm{flex:1;min-width:0;font-size:28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.trow .tag{font-size:21px;font-weight:600;padding:6px 16px;border-radius:9px;flex-shrink:0;margin-left:14px;}
+.tag.wait{background:var(--violet-bg);color:var(--violet);} .tag.sel{background:var(--coral-wash);color:var(--coral);}
+/* 未选中（待恢复态）行灰显；已选中行正常 */
+.trow.off .ic{opacity:.5;} .trow.off .nm{color:var(--t4);}
+.trow.on .nm{color:var(--t1);}
+.tip{font-size:23px;color:var(--t3);text-align:center;padding:24px 0 4px;}
+/* 底部确认栏 */
+.bar{position:fixed;left:0;right:0;bottom:0;width:750px;background:#fff;box-shadow:0 -4px 24px rgba(31,35,60,.08);padding:24px 36px 46px;}
+.confirm{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;font-size:33px;font-weight:700;text-align:center;padding:28px 0;border-radius:50px;box-shadow:0 10px 24px rgba(255,68,61,.3);}
+.confirm .n{font-weight:400;font-size:26px;}
+</style></head><body>
+<div class="statusbar"><span>9:41</span><span class="ic">▪▪▪ 📶 🔋</span></div>
+<div class="nav"><span class="back">‹</span><span class="title">调整计划</span></div>
+<div class="content">
+<div class="card">
+  <div class="ch">学习设置</div>
+  <div class="set"><span class="k">每日学习时长</span><span class="v">3 小时</span><span class="arr">›</span></div>
+  <div class="set"><span class="k">考试日期</span><span class="v">2027-04-15</span><span class="arr">›</span></div>
+</div>
+<div class="card">
+  <div class="ch">待排任务<span class="cnt">· 3</span></div>
+  <div class="chsub">勾选要恢复的任务（可多选），点底部「确认调整」统一生效；若时长不够会弹出提示，选择加时长或删减其他任务。</div>
+  <div class="trow on"><span class="recover on">待恢复 ✓</span><span class="ic prac">练</span><span class="nm">逻辑填空 · 专项练习</span><span class="tag sel">待恢复</span></div>
+  <div class="trow on"><span class="recover on">待恢复 ✓</span><span class="ic video">▶</span><span class="nm">常识判断 · 视频精讲</span><span class="tag sel">待恢复</span></div>
+  <div class="trow off"><span class="recover off">恢复</span><span class="ic prac">练</span><span class="nm">资料分析 · 专项练习</span><span class="tag wait">未排入</span></div>
+  <div class="tip">仅展示可恢复的未排入任务</div>
+</div>
+</div>
+<div class="bar"><div class="confirm">确认调整<span class="n">（已选 2 个恢复）</span></div></div>
+</body></html>
