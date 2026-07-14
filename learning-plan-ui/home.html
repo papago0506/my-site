@@ -36,7 +36,10 @@ body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:150px;}
 .day{text-align:center;flex:1;position:relative;} .day .wd{font-size:22px;color:var(--t2);} .day .dd{font-size:40px;font-weight:400;color:var(--t1);margin-top:8px;line-height:1;padding:8px 0;border-radius:10px;}
 .day.on .wd{color:#fff;position:relative;z-index:1;} .day.on .box{position:absolute;top:34px;left:50%;transform:translateX(-50%);width:80px;height:88px;background:var(--coral2);border-radius:16px;}
 .day.on .wd,.day.on .dd{color:#fff;position:relative;z-index:1;}
-.day .dot{width:10px;height:10px;border-radius:50%;background:#FFBB38;position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);}
+.day .dot{width:10px;height:10px;border-radius:50%;position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);}
+.dot.done{background:#24C789;} .dot.skip{background:#FFBB38;} .dot.live{background:#FF443D;}
+.wklegend{display:flex;gap:28px;justify-content:center;padding:20px 0 2px;font-size:21px;color:#919296;}
+.wklegend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:middle;}
 /* 任务卡 通用 */
 .tcard{border-radius:32px;padding:14px 16px 18px;box-shadow:0 6px 22px rgba(31,35,60,.05);}
 .tcard.pink{background:var(--pink);} .tcard.white{background:#fff;}
@@ -89,14 +92,15 @@ body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:150px;}
   <!-- 周历 -->
   <div class="wk">计划第 13 周（共 18 周）· 3月<span class="today">今</span></div>
   <div class="week mb">
-    <div class="day"><div class="wd">周一</div><div class="dd">09</div><span class="dot"></span></div>
-    <div class="day"><div class="wd">周二</div><div class="dd">10</div></div>
-    <div class="day"><div class="wd">周三</div><div class="dd">11</div><span class="dot"></span></div>
+    <div class="day"><div class="wd">周一</div><div class="dd">09</div><span class="dot done"></span></div>
+    <div class="day"><div class="wd">周二</div><div class="dd">10</div><span class="dot live"></span></div>
+    <div class="day"><div class="wd">周三</div><div class="dd">11</div><span class="dot skip"></span></div>
     <div class="day on"><span class="box"></span><div class="wd">周四</div><div class="dd">12</div></div>
     <div class="day"><div class="wd">今日</div><div class="dd">13</div></div>
     <div class="day"><div class="wd">周六</div><div class="dd">14</div></div>
     <div class="day"><div class="wd">周日</div><div class="dd">15</div></div>
   </div>
+  <div class="wklegend"><span><i style="background:#24C789"></i>已完成</span><span><i style="background:#FFBB38"></i>有跳过</span><span><i style="background:#FF443D"></i>有未看重点直播</span></div>
 
   <!-- 今日任务（粉容器 + 白任务块） -->
   <div class="tcard pink mb">
@@ -109,9 +113,9 @@ body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:150px;}
     <div class="fold">展开已完成 2 个任务 ⌄</div>
   </div>
 
-  <!-- 重点直播（同款样式，夹在今日任务与补给任务之间） -->
-  <div class="tcard pink mb">
-    <div class="th"><span class="lab onpink">重点直播</span><span class="cnt">1</span></div>
+  <!-- 重点直播（白底补给格式，夹在今日任务与补给任务之间） -->
+  <div class="tcard white mb">
+    <div class="th"><span class="lab onwhite">重点直播</span><span class="cnt">1</span></div>
     <div class="pill"><span class="ic live">播</span><span class="mid"><span class="nm">第 15 讲 · 判断推理（近义实词辨析）</span><span class="mt">主讲 李思栋 ｜ 17:00 开课</span></span><span class="btn gray">未开始</span></div>
   </div>
 
