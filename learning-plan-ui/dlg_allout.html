@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-.screen{width:750px;height:1220px;position:relative;background:#5b5d67;overflow:hidden;}
+.screen{width:750px;height:1240px;position:relative;background:#5b5d67;overflow:hidden;}
 .sheet{position:absolute;left:40px;right:40px;bottom:64px;}
 .card{background:#fff;border-radius:40px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.28);}
 .header{background:linear-gradient(120deg,#FFE9D9,#FBEACC);border-radius:40px 40px 0 0;padding:38px 40px 32px;display:flex;gap:24px;align-items:flex-start;}
@@ -12,32 +12,31 @@
 .notch{position:absolute;top:-19px;width:38px;height:38px;border-radius:50%;background:#5b5d67;}
 .nl{left:-59px;} .nr{right:-59px;}
 .body{padding:34px 40px 32px;}
-.title{font-size:32px;font-weight:700;color:#23252D;line-height:1.5;margin-bottom:26px;}
-.title.red{color:#FF443D;}
+.title{font-size:32px;font-weight:700;color:#FF443D;line-height:1.5;margin-bottom:26px;}
 .statbox{background:#F5F6F8;border-radius:22px;padding:6px 28px;}
 .srow{display:flex;justify-content:space-between;align-items:center;padding:22px 0;}
 .srow .k{font-size:24px;color:#9296A6;font-weight:500;} .srow .v{font-size:30px;color:#23252D;font-weight:700;}
 .hint{text-align:center;font-size:24px;color:#BDBEC0;margin-top:26px;}
 .pri{margin-top:30px;background:linear-gradient(135deg,#FF6A5A,#FF443D);color:#fff;border-radius:50px;padding:28px 0;text-align:center;font-size:32px;font-weight:700;box-shadow:0 12px 26px rgba(255,68,61,.32);}
-.pri .sub{font-weight:400;font-size:26px;}
-.secout{margin-top:22px;text-align:center;border:2px solid #D2D4DB;color:#4F5157;border-radius:50px;padding:26px 0;font-size:30px;font-weight:600;}
+.pri .sub{font-weight:400;font-size:24px;}
+.sectext{margin-top:28px;text-align:center;font-size:28px;color:#8A8D96;}
 </style></head><body>
 <div class="screen"><div class="sheet">
 <div class="card">
   <div class="header">
     <div class="aw"><div class="avatar">👩🏻</div><div class="aname">李思栋老师</div></div>
-    <div class="msg">我看到你有一些积压任务，我已帮你更新了计划，但目前的进度<span class="em">已超出备考日期</span>，请做出决策</div>
+    <div class="msg">你的学习时长缺口较大，<span class="em">加一点时长也补不上</span>，需每天拉满学习时长才能学完，我已帮你更新了计划，请做出决策</div>
   </div>
   <div class="divider"><span class="notch nl"></span><span class="notch nr"></span></div>
   <div class="body">
-    <div class="title red">备考时间不足，按照当前节奏学习将会超出目标考试时间</div>
+    <div class="title">时长缺口较大，需全力追赶才能学完全部任务</div>
     <div class="statbox">
       <div class="srow"><span class="k">未完成任务数量</span><span class="v">50</span></div>
-      <div class="srow"><span class="k">预计还需学习</span><span class="v">42 天</span></div>
+      <div class="srow"><span class="k">全力追赶后预计</span><span class="v">42 天学完</span></div>
     </div>
     <div class="hint">30s 后将自动执行推荐方案</div>
   </div>
 </div>
-<div class="pri">全力追赶<span class="sub">（按最快速度学习）</span></div>
-<div class="secout">调整学习计划</div>
+<div class="pri">全力追赶<span class="sub">（每天拉满学习时长）</span></div>
+<div class="sectext">接受删减</div>
 </div></div></body></html>
