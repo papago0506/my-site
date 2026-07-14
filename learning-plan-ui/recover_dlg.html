@@ -1,50 +1,31 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><link rel="stylesheet" href="ds.css"><style>
-.screen{width:750px;height:1334px;position:relative;background:linear-gradient(180deg,#EAF0FF,#F5F6FD);overflow:hidden;}
-/* 背景虚化的全部计划页残影 */
-.ghost{padding:40px 36px;filter:saturate(.8);}
-.ghost .gcard{background:#fff;border-radius:32px;box-shadow:0 6px 24px rgba(31,35,60,.05);padding:30px 32px;margin-bottom:24px;}
-.ghost .grow{display:flex;align-items:center;padding:22px 0;border-top:1px solid #EEEEF1;}
-.ghost .grow:first-child{border-top:none;}
-.ghost .gi{width:44px;height:44px;border-radius:12px;background:#5AA9FF;margin-right:20px;flex-shrink:0;}
-.ghost .gt{flex:1;height:26px;background:#EDEFF4;border-radius:8px;}
-.ghost .gb{width:120px;height:40px;background:#F1F2F5;border-radius:10px;margin-left:14px;}
-.mask{position:absolute;inset:0;background:rgba(28,30,42,.55);}
-.dlg{position:absolute;left:56px;right:56px;top:360px;background:#fff;border-radius:40px;padding:56px 48px 44px;box-shadow:0 24px 70px rgba(0,0,0,.3);}
-.ficon{width:120px;height:120px;border-radius:50%;background:var(--coral-wash);display:flex;align-items:center;justify-content:center;font-size:60px;margin:0 auto 26px;}
-.dlg .h{font-size:38px;font-weight:700;text-align:center;margin-bottom:30px;}
-/* 被恢复的任务 */
-.trow{display:flex;align-items:center;background:var(--bg);border-radius:22px;padding:24px 26px;margin-bottom:30px;}
-.trow .ic{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#5AA9FF,#2E86FF);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;margin-right:22px;flex-shrink:0;}
-.trow .nm{flex:1;font-size:29px;font-weight:600;color:var(--t1);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.trow .bd{font-size:22px;font-weight:600;padding:8px 18px;border-radius:12px;background:#F1F2F5;color:#9A9DA6;flex-shrink:0;margin-left:14px;}
-.dlg .body{font-size:29px;color:var(--t2);line-height:1.65;margin-bottom:26px;text-align:center;}
-.dlg .body b{color:var(--t1);}
-.notebox{background:var(--coral-wash);border-radius:22px;padding:26px 28px;font-size:26px;color:#B0453E;line-height:1.65;margin-bottom:40px;display:flex;gap:14px;}
-.notebox .e{flex-shrink:0;font-size:28px;}
-.acts{display:flex;gap:24px;}
-.acts .b{flex:1;text-align:center;font-size:32px;font-weight:700;padding:26px 0;border-radius:50px;}
-.b-cancel{border:2px solid #E2E3E9;color:var(--t2);}
-.b-ok{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;box-shadow:0 12px 26px rgba(255,68,61,.32);}
+.screen{width:750px;height:1180px;position:relative;background:linear-gradient(180deg,#EDE5F5,#F5F6FD);overflow:hidden;}
+.mask{position:absolute;inset:0;background:rgba(28,30,42,.5);}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:36px 36px 0 0;padding:44px 44px 56px;box-shadow:0 -10px 40px rgba(0,0,0,.2);}
+.sheet .h{font-size:36px;font-weight:700;text-align:center;margin-bottom:12px;}
+.sheet .body{font-size:27px;color:var(--t2);line-height:1.6;text-align:center;margin-bottom:12px;}
+.sheet .body b{color:var(--coral);font-weight:700;}
+.sheet .gap{font-size:24px;color:var(--t3);text-align:center;margin-bottom:32px;}
+.opt{display:flex;flex-direction:column;gap:20px;}
+.o{text-align:center;padding:26px 0;border-radius:44px;font-size:30px;font-weight:700;}
+.o .s{display:block;font-size:21px;font-weight:400;margin-top:4px;opacity:.9;}
+.o-more{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;box-shadow:0 10px 22px rgba(255,68,61,.3);}
+.o-more .s{color:#fff;}
+.o-del{border:2px solid var(--coral);color:var(--coral);}
+.o-del .s{color:var(--t3);}
+.o-cancel{color:var(--t3);font-weight:600;padding:14px 0;font-size:28px;}
+.note{font-size:22px;color:var(--t3);text-align:center;line-height:1.6;margin-top:24px;}
+.note b{color:var(--coral);}
 </style></head><body>
-<div class="screen">
-  <!-- 背景残影：全部计划页 -->
-  <div class="ghost">
-    <div class="statusbar"><span>9:41</span><span class="ic">▪▪▪ 📶 🔋</span></div>
-    <div class="gcard">
-      <div class="grow"><span class="gi"></span><span class="gt" style="max-width:300px"></span><span class="gb"></span></div>
-      <div class="grow"><span class="gi" style="background:#FF9A2E"></span><span class="gt" style="max-width:360px"></span><span class="gb"></span></div>
-      <div class="grow"><span class="gi"></span><span class="gt" style="max-width:280px"></span><span class="gb"></span></div>
-      <div class="grow"><span class="gi" style="background:#FF9A2E"></span><span class="gt" style="max-width:340px"></span><span class="gb"></span></div>
-    </div>
-  </div>
-  <div class="mask"></div>
-  <!-- 恢复确认弹层（排不进场景）-->
-  <div class="dlg">
-    <div class="ficon">⏳</div>
-    <div class="h">恢复任务</div>
-    <div class="trow"><span class="ic">练</span><span class="nm">逻辑填空 · 专项练习</span><span class="bd">未排入计划</span></div>
-    <div class="body">当前学习时长已排满，恢复后它会先标记为<b>「未排入计划」</b>。</div>
-    <div class="notebox"><span class="e">💡</span><span>等你<b>延长每日学习时长</b>、或<b>完成部分任务</b>腾出时间后，系统会自动把它排入，无需再次操作。</span></div>
-    <div class="acts"><span class="b b-cancel">取消</span><span class="b b-ok">仍要恢复</span></div>
-  </div>
-</div></body></html>
+<div class="screen"><div class="mask"></div>
+<div class="sheet">
+<div class="h">恢复任务</div>
+<div class="body">恢复「逻辑填空 · 专项练习」后，计划总时长将超出你当前设定 <b>约 40min</b>。</div>
+<div class="gap">你可以加学习时长排入，或移出当前优先级最低的任务为它腾位。</div>
+<div class="opt">
+  <span class="o o-more">去加时长<span class="s">延长备考 / 提高每日学习时长</span></span>
+  <span class="o o-del">删除当前优先级最低任务<span class="s">腾出空间、保持时长不变</span></span>
+  <span class="o o-cancel">取消</span>
+</div>
+<div class="note">恢复成功后该任务标记 <b>「已恢复 · 锁定」</b>，不再被系统自动删除。</div>
+</div></div></body></html>
