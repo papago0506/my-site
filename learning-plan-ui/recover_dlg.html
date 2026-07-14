@@ -1,31 +1,44 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><link rel="stylesheet" href="ds.css"><style>
-.screen{width:750px;height:1180px;position:relative;background:linear-gradient(180deg,#EDE5F5,#F5F6FD);overflow:hidden;}
-.mask{position:absolute;inset:0;background:rgba(28,30,42,.5);}
-.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:36px 36px 0 0;padding:44px 44px 56px;box-shadow:0 -10px 40px rgba(0,0,0,.2);}
-.sheet .h{font-size:36px;font-weight:700;text-align:center;margin-bottom:12px;}
-.sheet .body{font-size:27px;color:var(--t2);line-height:1.6;text-align:center;margin-bottom:12px;}
-.sheet .body b{color:var(--coral);font-weight:700;}
-.sheet .gap{font-size:24px;color:var(--t3);text-align:center;margin-bottom:32px;}
-.opt{display:flex;flex-direction:column;gap:20px;}
-.o{text-align:center;padding:26px 0;border-radius:44px;font-size:30px;font-weight:700;}
-.o .s{display:block;font-size:21px;font-weight:400;margin-top:4px;opacity:.9;}
-.o-more{background:linear-gradient(135deg,var(--coral-2),var(--coral));color:#fff;box-shadow:0 10px 22px rgba(255,68,61,.3);}
-.o-more .s{color:#fff;}
-.o-del{border:2px solid var(--coral);color:var(--coral);}
-.o-del .s{color:var(--t3);}
-.o-cancel{color:var(--t3);font-weight:600;padding:14px 0;font-size:28px;}
-.note{font-size:22px;color:var(--t3);text-align:center;line-height:1.6;margin-top:24px;}
-.note b{color:var(--coral);}
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.screen{width:750px;height:1320px;position:relative;background:#5b5d67;overflow:hidden;}
+.sheet{position:absolute;left:40px;right:40px;bottom:64px;}
+.card{background:#fff;border-radius:40px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.28);}
+.header{background:linear-gradient(120deg,#FFE9D9,#FBEACC);border-radius:40px 40px 0 0;padding:38px 40px 32px;display:flex;gap:24px;align-items:flex-start;}
+.avatar{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#6B6584,#857F9D);flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;font-size:52px;overflow:hidden;}
+.aw{flex-shrink:0;text-align:center;} .aname{font-size:20px;color:#7a5647;margin-top:8px;white-space:nowrap;}
+.msg{flex:1;font-size:28px;line-height:1.55;color:#4C0303;font-weight:500;}
+.msg .em{color:#FF443D;font-weight:700;}
+.divider{position:relative;border-top:2px dashed #EBD9CD;margin:0 40px;}
+.notch{position:absolute;top:-19px;width:38px;height:38px;border-radius:50%;background:#5b5d67;}
+.nl{left:-59px;} .nr{right:-59px;}
+.body{padding:34px 40px 32px;}
+.title{font-size:32px;font-weight:700;color:#23252D;line-height:1.5;margin-bottom:26px;}
+.statbox{background:#F5F6F8;border-radius:22px;padding:6px 28px;}
+.srow{display:flex;justify-content:space-between;align-items:center;padding:22px 0;}
+.srow .k{font-size:24px;color:#9296A6;font-weight:500;} .srow .v{font-size:30px;color:#23252D;font-weight:700;} .srow .v.coral{color:#FF443D;}
+.hint{text-align:center;font-size:24px;color:#BDBEC0;margin-top:26px;}
+.pri{margin-top:30px;background:linear-gradient(135deg,#FF6A5A,#FF443D);color:#fff;border-radius:50px;padding:28px 0;text-align:center;font-size:32px;font-weight:700;box-shadow:0 12px 26px rgba(255,68,61,.32);}
+.pri .sub{font-weight:400;font-size:26px;}
+.secout{margin-top:22px;text-align:center;border:2px solid #D2D4DB;color:#4F5157;border-radius:50px;padding:26px 0;font-size:30px;font-weight:600;}
+.sectext{margin-top:24px;text-align:center;font-size:28px;color:#8A8D96;}
 </style></head><body>
-<div class="screen"><div class="mask"></div>
-<div class="sheet">
-<div class="h">恢复任务</div>
-<div class="body">恢复「逻辑填空 · 专项练习」后，计划总时长将超出你当前设定 <b>约 40min</b>。</div>
-<div class="gap">你可以加学习时长排入，或移出当前优先级最低的任务为它腾位。</div>
-<div class="opt">
-  <span class="o o-more">去加时长<span class="s">延长备考 / 提高每日学习时长</span></span>
-  <span class="o o-del">删除当前优先级最低任务<span class="s">腾出空间、保持时长不变</span></span>
-  <span class="o o-cancel">取消</span>
+<div class="screen"><div class="sheet">
+<div class="card">
+  <div class="header">
+    <div class="aw"><div class="avatar">👩🏻</div><div class="aname">李思栋老师</div></div>
+    <div class="msg">你想恢复「逻辑填空 · 专项练习」，但当前学习时长已排满、<span class="em">暂时放不下它</span>，请选择处理方式</div>
+  </div>
+  <div class="divider"><span class="notch nl"></span><span class="notch nr"></span></div>
+  <div class="body">
+    <div class="title">恢复它需要腾出学习时长</div>
+    <div class="statbox">
+      <div class="srow"><span class="k">该任务预计时长</span><span class="v">40 min</span></div>
+      <div class="srow"><span class="k">当前时长缺口</span><span class="v coral">40 min</span></div>
+    </div>
+    <div class="hint">恢复成功后将标记「已恢复·锁定」，不再被系统自动删除</div>
+  </div>
 </div>
-<div class="note">恢复成功后该任务标记 <b>「已恢复 · 锁定」</b>，不再被系统自动删除。</div>
+<div class="pri">去加时长<span class="sub">（延长备考 / 提高每日时长）</span></div>
+<div class="secout">删除当前优先级最低任务腾位</div>
+<div class="sectext">取消</div>
 </div></div></body></html>
