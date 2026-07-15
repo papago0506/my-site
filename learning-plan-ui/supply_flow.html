@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+:root{--coral:#FF443D;--blue:#2E86FF;--green:#24C789;--t1:#23252D;--t2:#4F5157;--t3:#9296A6;}
+body{width:1000px;background:#fff;color:var(--t1);padding:44px 46px;}
+.title{font-size:34px;font-weight:800;margin-bottom:8px;}
+.sub{font-size:24px;color:var(--t3);margin-bottom:36px;}
+.pool{margin:0 auto;width:560px;background:linear-gradient(135deg,#FFF0EE,#FFF8F6);border:2px solid #FFCFC9;border-radius:20px;padding:26px 32px;text-align:center;}
+.pool .h{font-size:30px;font-weight:800;color:var(--coral);}
+.pool .m{font-size:23px;color:var(--t2);margin-top:8px;}
+.cond{text-align:center;margin:16px 0 8px;font-size:24px;color:var(--t2);}
+.arrow{text-align:center;font-size:40px;color:var(--t3);line-height:1;margin:2px 0;}
+.branches{display:flex;gap:40px;justify-content:center;margin-top:14px;}
+.br{flex:1;max-width:400px;}
+.brtag{text-align:center;font-size:24px;font-weight:700;margin-bottom:10px;}
+.brtag.y{color:var(--green);} .brtag.n{color:var(--t3);}
+.box{border-radius:18px;padding:24px 26px;text-align:center;}
+.box.today{background:#EAF2FF;border:2px solid #BFDBFF;}
+.box.stay{background:#F5F6FB;border:2px solid #E4E6EF;}
+.box .bh{font-size:27px;font-weight:800;color:var(--blue);} .box.stay .bh{color:var(--t2);}
+.box .bm{font-size:22px;color:var(--t2);margin-top:8px;line-height:1.5;}
+.section{margin-top:40px;border-top:2px dashed #ECECF0;padding-top:30px;}
+.sh{font-size:28px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;}
+.sh i{width:12px;height:28px;background:var(--coral);border-radius:4px;margin-right:14px;}
+.toggle{display:flex;gap:28px;}
+.tg{flex:1;border-radius:18px;padding:24px 28px;}
+.tg.on{background:#FFF3E9;border:2px solid #FFD9B8;} .tg.off{background:#EAFBF3;border:2px solid #BEEBD6;}
+.tg .c{font-size:24px;font-weight:700;margin-bottom:10px;} .tg.on .c{color:#E07A28;} .tg.off .c{color:#12A66C;}
+.tg .d{font-size:23px;color:var(--t1);}
+.tg .d b{color:var(--coral);}
+.moveout{margin-top:24px;display:flex;align-items:center;flex-wrap:wrap;gap:14px;font-size:24px;}
+.chip{background:#F5F6FB;border:1px solid #E4E6EF;border-radius:12px;padding:14px 22px;font-weight:600;}
+.chip.warn{background:#FFF0EE;border-color:#FFCFC9;color:var(--coral);}
+.chip.wait{background:#F1ECFB;border-color:#DDD0F5;color:#8158CC;}
+.mv{font-size:30px;color:var(--t3);}
+</style></head><body>
+<div class="title">补给任务：移入 / 移出 逻辑</div>
+<div class="sub">补给池是统一的一个池；今日任务卡与补给卡的内容都从这个池分配</div>
+
+<div class="pool"><div class="h">补给池</div><div class="m">按组组织：1 学科积累 + 1 练习 + 1 课程切片 = 一组</div></div>
+<div class="cond">主线（录播 + 重点直播）排完、当天仍有剩余学习时长？</div>
+<div class="arrow">▼</div>
+<div class="branches">
+  <div class="br"><div class="brtag y">是 · 移入</div><div class="box today"><div class="bh">→ 今日任务卡</div><div class="bm">按组循环补位；计入今日目标 / 完成率 / 学习时长</div></div></div>
+  <div class="br"><div class="brtag n">否 · 不移入</div><div class="box stay"><div class="bh">留在补给池</div><div class="bm">当天不进今日任务卡</div></div></div>
+</div>
+
+<div class="section">
+  <div class="sh"><i></i>补给卡展示（随「当天是否有补给进今日卡」切换）</div>
+  <div class="toggle">
+    <div class="tg on"><div class="c">有补给进今日卡</div><div class="d">补给卡 <b>只展示 1 条时政</b>（其余不重复展示）</div></div>
+    <div class="tg off"><div class="c">无补给进今日卡</div><div class="d">补给卡 <b>按配额展示</b>：2 积累（1 时政 + 1 学科）+ 1 练习 + 1 课程</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sh"><i></i>移出（容量 / 时长变小，今日卡放不下）</div>
+  <div class="moveout">
+    <span class="chip">今日任务卡的补给</span><span class="mv">→</span>
+    <span class="chip warn">放不下被移出</span><span class="mv">→</span>
+    <span class="chip wait">进「待排区」（不退回补给卡）</span><span class="mv">→</span>
+    <span class="chip">后续有空闲时长自动补排</span>
+  </div>
+</div>
+</body></html>
