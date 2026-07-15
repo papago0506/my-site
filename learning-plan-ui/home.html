@@ -44,8 +44,10 @@ body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:150px;}
 .tcard{border-radius:32px;padding:14px 16px 18px;box-shadow:0 6px 22px rgba(31,35,60,.05);}
 .tcard.pink{background:var(--pink);} .tcard.white{background:#fff;}
 .th{display:flex;align-items:center;padding:16px 14px 14px;}
-.lab{font-size:26px;font-weight:800;color:var(--coral);border-radius:12px;padding:9px 18px;}
+.lab{display:inline-flex;align-items:center;font-size:30px;font-weight:700;border-radius:12px;padding:8px 16px;line-height:1;}
 .lab.onwhite{background:var(--pink);} .lab.onpink{background:#fff;}
+.lab .c{color:var(--coral);} .lab .d{color:#23252D;}
+.lab .bolt{background:var(--coral);color:#fff;font-size:19px;font-weight:800;border-radius:5px;padding:3px 4px;margin:0 3px;}
 .th .cnt{margin-left:auto;font-size:25px;color:rgba(76,3,3,.4);} .th .cnt.fold::after{content:" ⌄";}
 .pill{background:#fff;border-radius:20px;padding:24px 26px;display:flex;align-items:center;margin:0 4px 14px;}
 .tcard.white .pill{border:1px solid #F3F3F6;}
@@ -104,7 +106,7 @@ body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:150px;}
 
   <!-- 今日任务（粉容器 + 白任务块） -->
   <div class="tcard pink mb">
-    <div class="th"><span class="lab onpink">今日任务</span><span class="cnt">1/8</span></div>
+    <div class="th"><span class="lab onpink"><span class="c">今</span><span class="bolt">⚡</span><span class="d">任务</span></span><span class="cnt">1/8</span></div>
     <div class="pill"><span class="ic video">▶</span><span class="mid"><span class="nm">数量关系</span><span class="mt">预计 25min ｜ 已观看 75%</span></span><span class="btn go">去学习</span></div>
     <div class="subtip">上次学到</div>
     <div class="pill"><span class="ic prac">练</span><span class="mid"><span class="nm">数量关系</span><span class="mt">预计 25min ｜ 题目数量 10</span></span><span class="btn on">继续练习</span></div>
@@ -114,14 +116,14 @@ body{width:750px;background:var(--bg);color:var(--t1);padding-bottom:150px;}
   </div>
 
   <!-- 重点直播（与今日任务卡片完全一致：粉底容器 + 白任务块 + 白标签） -->
-  <div class="tcard pink mb">
-    <div class="th"><span class="lab onpink">重点直播</span><span class="cnt">1</span></div>
+  <div class="tcard white mb">
+    <div class="th"><span class="lab onwhite"><span class="c">重点</span><span class="d">直播</span></span><span class="cnt">1</span></div>
     <div class="pill"><span class="ic live">播</span><span class="mid"><span class="nm">第 15 讲 · 判断推理（近义实词辨析）</span><span class="mt">主讲 李思栋 ｜ 17:00 开课</span></span><span class="btn gray">未开始</span></div>
   </div>
 
   <!-- 补给任务（白容器 + 粉标签） -->
   <div class="tcard white mb">
-    <div class="th"><span class="lab onwhite">补给任务</span><span class="cnt fold">1/4</span></div>
+    <div class="th"><span class="lab onwhite"><span class="c">补给</span><span class="d">任务</span></span><span class="cnt fold">1/4</span></div>
     <div class="pill"><span class="ic recite">背</span><span class="mid"><span class="nm">背诵 · 习近平主持东北全面振兴座谈会</span><span class="mt">预计 10min</span></span><span class="btn go">去学习</span></div>
     <div class="pill"><span class="ic prac">练</span><span class="mid"><span class="nm">智能练习 · 习近平振兴东北座谈会</span><span class="mt">预计 10min ｜ 题目数量 3</span></span><span class="btn go">去练习</span></div>
     <div class="pill"><span class="ic read">阅</span><span class="mid"><span class="nm">阅读 · 全过程人民民主的重大理念</span><span class="mt">预计 10min</span></span><span class="done">✓</span></div>
